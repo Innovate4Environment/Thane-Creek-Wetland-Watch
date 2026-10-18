@@ -1,361 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thane Creek Wetland Watch</title>
-<link rel="preconnect" href="https://unpkg.com">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-:root{--deep:#063e36;--green:#087a5e;--teal:#0b817a;--navy:#102c56;--line:#dce5e9;--muted:#5c6e7f;--bg:#e9f0f1;--shadow:0 3px 12px #123b4b12}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,Arial,sans-serif;color:#142d48;font-size:13px}.hero{background:linear-gradient(90deg,#e8f7f4e8,#d8f0f8dd),url('https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1800&q=80') center 48%/cover;min-height:110px;border-bottom:3px solid #08735c;position:relative}.hero-overlay{height:76px;display:flex;align-items:center;padding:8px 2.2%;gap:15px;background:linear-gradient(90deg,#f0faf6cc,#eaf7f7b8)}.brand-mark{font-size:40px;color:#194e41;transform:rotate(-12deg)}.brand-copy h1{font-size:clamp(22px,2.7vw,40px);line-height:1.1;margin:0;color:#064d3d;letter-spacing:-1.2px;font-weight:800}.brand-copy p{font-size:clamp(11px,1.2vw,17px);font-weight:700;color:#164b3c;margin:3px 0 0}.initiative{margin-left:auto;border-left:2px solid #5b9c80;padding-left:14px;color:#0c513c;white-space:nowrap}.initiative strong{display:block;font-size:15px}.initiative small{display:block;font-size:11px;margin-top:4px}.topnav{height:34px;display:flex;justify-content:flex-end;gap:2px;background:#052e2bdb;padding:0 3%}.nav-link{border:0;color:#fff;background:transparent;text-transform:uppercase;font-weight:600;padding:0 clamp(12px,2vw,28px);cursor:pointer;border-left:1px solid #ffffff12}.nav-link:hover,.nav-link.active{background:#078465}.workspace{display:grid;grid-template-columns:310px minmax(350px,1fr) 365px;gap:7px;padding:7px 7px 0;height:400px;min-height:400px}.panel,.stats-panel{background:#fff;border:1px solid #d6e1e5;border-radius:14px;box-shadow:var(--shadow);overflow:hidden}.left-panel{padding:14px 13px;overflow:auto}.section-heading{display:flex;align-items:center;gap:8px}.section-heading h2{font-size:16px;margin:0;font-weight:800;color:#102d58}.info{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;width:16px;height:16px;background:#879bab;color:white;font-size:11px;font-weight:800;font-style:normal;cursor:help}.year-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:11px}.year-buttons button{border:0;border-radius:7px;padding:12px 4px;background:#eaf0f3;color:#15505c;font-weight:600;cursor:pointer}.year-buttons button:hover{background:#d5e8e5}.year-buttons button.selected{background:#07594a;color:#fff;box-shadow:0 2px 5px #063e3626}.year-buttons button:focus-visible{outline:3px solid #36a8d5;outline-offset:2px}.divider{height:1px;background:#e6ecef;margin:16px 0 13px}.field-label{display:block;font-size:15px;font-weight:800;color:#102d58;margin-bottom:8px}.search-box{height:39px;border:1px solid #cbd7dd;border-radius:8px;display:flex;align-items:center;padding:0 10px;gap:8px;color:#5c7486}.search-box input{border:0;outline:0;min-width:0;width:100%;font:inherit;color:#20364a}.search-box button{border:0;background:transparent;color:#64798a;font-size:21px;cursor:pointer;display:none}.search-results{display:none;margin-top:6px;border:1px solid var(--line);border-radius:7px;overflow:hidden}.search-results button{display:block;width:100%;text-align:left;padding:9px 10px;background:white;border:0;border-bottom:1px solid #edf1f2;cursor:pointer;color:#143858}.search-results button:hover{background:#eef8f4}.layers{margin-top:8px}.layer-row{display:grid;grid-template-columns:20px 21px 1fr 18px;gap:8px;align-items:center;min-height:34px;cursor:pointer;color:#203d5b;font-size:12px}.layer-row input{width:18px;height:18px;accent-color:#1376c4;margin:0;cursor:pointer}.layer-symbol{height:17px;width:18px;display:inline-block;border-radius:4px}.blue{background:#1586d5}.green{background:#13a94c}.yellow{background:#ffd22d}.red{background:#f04444}.orange{background:#ff9b35}.water{background:#1688ce}.mosaic{background:linear-gradient(135deg,#188ad6 0 25%,#21a847 25% 50%,#f8d12a 50% 70%,#ed4945 70%)}.dot-red{width:12px;height:12px;background:#ed2735;border-radius:50%;justify-self:center}.triangle-red{width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:18px solid #ed2735;position:relative}.triangle-red:after{content:'!';position:absolute;color:white;font-size:11px;left:-2.5px;top:4px;font-weight:800}.dashed{border:2px dashed #8d9cac;border-radius:10px}.ring-yellow{border:3px solid #f5c342;border-radius:50%;width:18px}.purple{background:#963df4;border-radius:50%;width:17px}.layer-more{border:0;background:none;color:#607589;font-weight:800;letter-spacing:1px;cursor:pointer;padding:3px}.left-foot{margin-top:17px;padding:9px;background:#f4f8f8;border-radius:7px;color:#71818b;font-size:10px;line-height:1.5}.map-wrap{position:relative;overflow:hidden;border-radius:10px;min-width:0;background:#d6e5e3}.map-wrap #map{position:absolute;inset:0}.leaflet-container{font-family:Inter,Arial,sans-serif}.leaflet-popup-content-wrapper{border-radius:10px}.leaflet-popup-content{font-size:12px;line-height:1.55}.map-tools{position:absolute;z-index:500;top:14px;left:13px;display:flex;flex-direction:column;gap:5px}.map-tools button{width:35px;height:35px;background:#fff;border:1px solid #d6e0e4;border-radius:5px;color:#152c40;font-size:24px;font-weight:600;box-shadow:0 2px 6px #0002;cursor:pointer}.map-tools button:last-child{font-size:15px}.north{position:absolute;right:20px;top:14px;z-index:400;text-align:center;font-weight:700;color:#fff;text-shadow:0 1px 4px #000;font-size:13px}.north i{display:block;font-size:24px}.map-legend{position:absolute;z-index:400;bottom:135px;left:13px;background:#132b34e8;color:white;padding:10px 11px;border:1px solid #b8c9ce;border-radius:8px;min-width:145px;display:grid;gap:6px;font-size:11px}.map-legend>div{display:flex;align-items:center;gap:8px}.legend-swatch{width:17px;height:14px;border:1px solid #ffffff55;border-radius:2px}.legend-dot{width:12px;height:12px;border-radius:50%;background:#fa2535;border:1px solid white;margin:0 3px}.legend-triangle{font-size:19px;color:#f82936;line-height:12px;text-shadow:0 0 2px white}.map-status{position:absolute;z-index:400;bottom:10px;right:10px;background:#fffdf0e8;border-radius:5px;padding:6px 9px;font-size:10px;color:#34535c}.detail-panel{position:relative;padding:17px 11px 12px;overflow:auto}.detail-panel h2{font-size:23px;color:#12315c;margin:0 28px 17px 6px;letter-spacing:-.5px}.close-detail{position:absolute;right:12px;top:9px;border:0;background:transparent;font-size:25px;color:#526b7d;cursor:pointer}.detail-tabs{display:flex;gap:2px;overflow-x:auto;padding-bottom:12px}.detail-tab{white-space:nowrap;border:0;background:#edf2f4;color:#233e55;padding:8px 9px;border-radius:5px 5px 0 0;font-size:11px;cursor:pointer}.detail-tab.active{background:#0c6a69;color:white}.detail-photo{height:125px;border-radius:7px;width:100%;object-fit:cover;display:block;margin-bottom:7px}.detail-content{font-size:12px}.detail-table{width:100%;border-collapse:collapse}.detail-table td{padding:8px 5px;border-bottom:1px solid #e4eaed;vertical-align:top;line-height:1.35}.detail-table td:first-child{color:#273c4e;width:38%}.detail-table td:last-child{color:#102c4b;font-weight:500}.negative{color:#d7223c!important}.priority-badge{display:inline-block;padding:5px 9px;border-radius:5px;background:#ffe0e3;color:#9b152a;font-weight:700}.detail-text{padding:7px 4px;line-height:1.7;color:#41586a}.detail-list{padding-left:20px;line-height:1.9}.stats-panel{margin:7px;padding:9px 10px 10px}.stats-title{padding:0 9px 9px}.stats-title h2{font-size:16px}.stats-title h2 span{font-size:13px;font-weight:500}.icon-button{border:0;border-radius:50%;width:18px;height:18px;background:#879bab;color:white;font-size:11px;font-weight:800;cursor:help}.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid #e4eaed;border-radius:8px;overflow:hidden}.stat{display:flex;align-items:center;justify-content:center;gap:12px;min-height:78px;padding:8px;border-right:1px solid #e4eaed}.stat:last-child{border:0}.stat>i{font-size:32px}.stat strong{display:block;font-size:19px;color:#122b52;white-space:nowrap}.stat span{display:block;font-size:11px;line-height:1.35;color:#263f5a;margin-top:3px}.stat-blue{color:#3d91c8}.stat-green{color:#198450}.stat-teal{color:#2a7c80}.stat-bird{color:#1788d8}.stat-red{color:#f14439}.chart-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:8px}.chart-card{border:1px solid #e0e8eb;border-radius:8px;padding:8px 10px 6px;min-width:0;min-height:174px}.chart-card h3{margin:0 0 7px;font-size:13px;color:#122d55;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chart-card h3 .info{width:14px;height:14px;font-size:10px;margin-left:4px}.chart-holder{height:135px;position:relative}.donut-layout{display:flex;align-items:center;gap:12px;height:135px}.donut-holder{height:130px;flex:0 0 52%;min-width:0}.chart-legend{display:grid;gap:7px;flex:1;font-size:11px}.chart-legend span{display:grid;grid-template-columns:12px 1fr auto;align-items:center;gap:6px;white-space:nowrap}.chart-legend b{font-weight:500}.sq{width:12px;height:12px;display:inline-block}.chart-legend .water{background:#2376c9}.chart-legend .green{background:#1a9a51}.chart-legend .yellow{background:#f6cc2c}.chart-legend .red{background:#eb4246}.chart-legend .orange{background:#f18b4b}footer{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:4px 15px 12px;color:#667983;font-size:10px}footer span:first-child{font-weight:700;color:#235548}footer button{border:1px solid #b8d0cb;background:white;border-radius:6px;padding:7px 10px;color:#0c6754;cursor:pointer;font:inherit;font-weight:600}footer button:hover{background:#e7f5f0}
-@media(max-width:1200px){.workspace{grid-template-columns:260px minmax(300px,1fr);height:570px}.detail-panel{position:absolute;z-index:700;right:14px;top:125px;width:min(360px,calc(100vw - 30px));height:520px;box-shadow:0 8px 35px #001e2c40}.detail-panel.hidden{display:none}.stat-grid{grid-template-columns:repeat(3,1fr)}.stat:nth-child(3){border-right:0}.stat:nth-child(-n+3){border-bottom:1px solid #e4eaed}.chart-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.map-legend{bottom:15px}}
-@media(max-width:700px){.hero-overlay{height:auto;min-height:78px;padding:10px;gap:9px}.brand-mark{font-size:27px}.brand-copy h1{font-size:22px;letter-spacing:-.6px}.brand-copy p{font-size:10px;max-width:260px}.initiative{display:none}.topnav{justify-content:flex-start;overflow-x:auto;padding:0 4px}.nav-link{padding:0 13px;font-size:10px;flex:0 0 auto}.workspace{display:flex;flex-direction:column;height:auto;padding:6px;gap:7px}.left-panel{max-height:none}.map-wrap{height:480px;min-height:430px;flex:none}.detail-panel{position:relative;top:auto;right:auto;width:auto;height:auto;max-height:600px}.detail-panel.hidden{display:block}.stats-panel{margin:6px}.stat-grid{grid-template-columns:repeat(2,1fr)}.stat{justify-content:flex-start;border-bottom:1px solid #e4eaed!important;min-height:72px}.stat:nth-child(2n){border-right:0}.stat:nth-last-child(-n+2){border-bottom:0!important}.stat>i{font-size:25px}.stat strong{font-size:17px}.chart-grid{grid-template-columns:1fr}.chart-card{min-height:190px}.chart-holder{height:145px}.donut-layout{justify-content:center}footer{flex-wrap:wrap}.map-legend{bottom:12px;left:10px;padding:8px;font-size:10px}.left-foot{display:none}}
+:root{--deep:#063e36;--green:#087a5e;--teal:#0b817a;--navy:#102c56;--line:#dce5e9;--muted:#5c6e7f;--bg:#eaf0f1;--shadow:0 3px 12px #123b4b12}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:12px}body{margin:0;background:var(--bg);font:13px Inter,Arial,sans-serif;color:#142d48}
+.hero{background:linear-gradient(90deg,#052a30d9,#052a3040),url('navbar.jpeg') center/cover no-repeat;border-bottom:3px solid var(--green)}
+.hero-main{min-height:88px;display:flex;align-items:center;gap:13px;padding:12px 2.2%}.brand-mark{font-size:36px;color:#fff}.initiative-name{font-size:12px;text-transform:uppercase;letter-spacing:1.6px;color:#a8ead4;font-weight:800;margin-bottom:2px}.brand-copy h1{margin:0;color:#fff;font-size:clamp(21px,2.4vw,34px);letter-spacing:-.8px}.brand-copy p{margin:4px 0 0;color:#e5f8f2;font-size:12px;font-weight:600}
+.topnav{display:block;padding:0 2.2%;background:#052e2bef}.nav-topline{display:flex;align-items:center;gap:14px;min-height:48px}.nav-toggle{display:none;align-items:center;justify-content:center;gap:8px;border:1px solid #72bda6;border-radius:8px;padding:8px 11px;background:#0b755b;color:#fff;font:inherit;font-weight:800;cursor:pointer}.nav-toggle:focus-visible,.nav-link:focus-visible{outline:3px solid #f4d35e;outline-offset:2px}
+.visitor-counter{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid #78c7ac;border-radius:9px;background:#0b755b;color:#fff;box-shadow:0 2px 10px #001b1a55}.visitor-counter i{font-size:17px}.visitor-counter strong{font-size:15px}.visitor-counter small{display:block;font-size:9px;letter-spacing:.7px;text-transform:uppercase;color:#d4f5e8}
+.ticker{flex:1;min-width:0;overflow:hidden;white-space:nowrap;color:#f0fff9;font-size:12px;font-weight:700;letter-spacing:.3px}.ticker span{display:inline-block;padding-left:100%;animation:marquee 24s linear infinite}.ticker:hover span{animation-play-state:paused}@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+.nav-menu{display:flex;align-items:stretch;justify-content:flex-end;gap:2px;flex:0 0 auto;min-height:42px}.nav-link{display:flex;align-items:center;justify-content:center;min-height:46px;padding:0 12px;color:#fff;text-decoration:none;text-transform:uppercase;font-size:10px;font-weight:700;border-left:1px solid #ffffff12;white-space:nowrap}.nav-link:hover,.nav-link.active{background:#078465}
+.workspace{display:grid;grid-template-columns:255px minmax(280px,1fr) 320px;gap:7px;padding:7px 7px 0;align-items:stretch}
+.panel,.stats-panel{background:#fff;border:1px solid #d6e1e5;border-radius:12px;box-shadow:var(--shadow);min-width:0}.left-panel{padding:12px;display:flex;flex-direction:column;gap:10px;max-height:550px;overflow:auto}.section-heading{display:flex;align-items:center;gap:7px}.section-heading h2{font-size:15px;margin:0;color:var(--navy);font-weight:800}.info{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#879bab;color:white;font-size:10px;font-weight:800;cursor:help;position:relative}.info:hover:after,.info:focus:after{content:attr(title);position:absolute;z-index:1500;left:50%;top:calc(100% + 8px);transform:translateX(-50%);width:230px;white-space:normal;background:#c92835;color:#fff;padding:9px 11px;border-radius:6px;font-size:11px;font-weight:600;line-height:1.45;box-shadow:0 5px 15px #4a101744}.year-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.year-buttons button{border:0;border-radius:7px;padding:10px 4px;background:#eaf0f3;color:#15505c;font-weight:700;cursor:pointer}.year-buttons button.selected{background:#07594a;color:#fff;box-shadow:0 2px 5px #063e3626}.divider{height:1px;background:#e6ecef;flex:none}.field-label{display:block;font-size:12px;font-weight:800;color:var(--navy);margin-bottom:7px}.location-select{width:100%;padding:10px;border:1px solid #cbd7dd;border-radius:8px;background:#fff;color:#20364a;font:inherit}.sidebar-stats{display:grid;grid-template-columns:1fr 1fr;gap:6px}.sidebar-stats>div{display:flex;align-items:center;gap:7px;padding:8px 6px;border:1px solid #e4eaed;border-radius:8px;background:#fbfdfd;min-width:0}.mini-stat-icon{display:flex;align-items:center;justify-content:center;flex:0 0 25px;height:25px;border-radius:7px;background:#e5f4ef;color:#087a5e;font-size:15px}.sidebar-stats strong{display:block;font-size:13px;color:#12315c;overflow-wrap:anywhere}.sidebar-stats small{display:block;font-size:9px;color:#5c6e7f;line-height:1.25;margin-top:3px}.left-foot{padding:8px;background:#f4f8f8;border-radius:7px;color:#71818b;font-size:10px;line-height:1.45}
+.map-wrap{position:relative;isolation:isolate;min-width:0;height:500px;border-radius:10px;overflow:hidden;background:#d6e5e3}.year-map-frame{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#e8efec;z-index:10}.map-status{position:absolute;z-index:20;bottom:9px;right:9px;background:#fffdf0ed;border-radius:5px;padding:6px 9px;font-size:10px;color:#34535c;pointer-events:none}.map-message{position:absolute;z-index:25;top:10px;left:10px;max-width:260px;background:#ffffffed;border:1px solid #dce5e9;border-radius:7px;padding:8px 10px;color:#28495a;font-size:10px;box-shadow:0 2px 8px #0001}
+.detail-panel{position:relative;padding:13px 11px 12px;max-height:550px;overflow:auto}.detail-panel h2{font-size:20px;color:#12315c;margin:0 32px 12px 4px}.close-detail{position:sticky;float:right;top:0;margin-top:-3px;margin-right:0;border:0;background:#edf3f4;width:29px;height:29px;border-radius:50%;font-size:21px;line-height:1;color:#526b7d;cursor:pointer;z-index:5}.close-detail:hover{background:#dce9e7;color:#064d3d}.detail-tabs{display:flex;gap:3px;overflow-x:auto;padding-bottom:10px;clear:both}.detail-tab{white-space:nowrap;border:0;background:#edf2f4;color:#233e55;padding:8px;border-radius:5px 5px 0 0;font-size:10px;cursor:pointer}.detail-tab.active{background:#0c6a69;color:white}.detail-photo{height:100px;border-radius:7px;width:100%;object-fit:cover;display:block;margin-bottom:7px}.detail-table{width:100%;border-collapse:collapse}.detail-table td{padding:7px 4px;border-bottom:1px solid #e4eaed;vertical-align:top;line-height:1.35;font-size:11px;overflow-wrap:anywhere}.detail-table td:first-child{color:#273c4e;width:38%}.detail-table td:last-child{color:#102c4b;font-weight:500}.negative{color:#d7223c!important}.priority-badge{display:inline-block;padding:4px 7px;border-radius:5px;background:#ffe0e3;color:#9b152a;font-weight:700}.detail-text{padding:6px 4px;line-height:1.65;color:#41586a;font-size:11px}.detail-list{padding-left:18px;line-height:1.8}.detail-action{border:0;background:#0b755b;color:#fff;border-radius:6px;padding:8px 10px;cursor:pointer}
+.stats-panel{margin:7px;padding:10px}.stats-title{display:flex;align-items:center;gap:8px;padding:0 3px 9px}.stats-title h2{font-size:15px;margin:0;color:var(--navy)}.chart-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.chart-card{border:1px solid #e0e8eb;border-radius:8px;padding:8px 9px 6px;min-width:0;min-height:165px}.chart-card h3{margin:0 0 7px;font-size:12px;color:#122d55;white-space:normal;line-height:1.35}.chart-holder{height:125px;position:relative}.donut-layout{display:flex;align-items:center;gap:7px;height:125px}.donut-holder{height:120px;flex:0 0 52%;min-width:0}.chart-legend{display:grid;gap:6px;flex:1;font-size:9px}.chart-legend span{display:grid;grid-template-columns:9px 1fr auto;align-items:center;gap:4px}.sq{width:9px;height:9px;display:inline-block}.water{background:#2376c9}.green{background:#1a9a51}.yellow{background:#f6cc2c}.red{background:#eb4246}.orange{background:#f18b4b}
+.about-strip{margin:7px;padding:10px 14px;background:#fff;border:1px solid #d6e1e5;border-radius:9px;display:flex;gap:10px;align-items:center;color:#526978;font-size:10px;line-height:1.5}.about-strip strong{color:#12315c;white-space:nowrap}footer{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 14px 12px;color:#667983;font-size:10px;flex-wrap:wrap}footer span:first-child{font-weight:700;color:#235548}footer button{border:1px solid #b8d0cb;background:white;border-radius:6px;padding:7px 10px;color:#0c6754;cursor:pointer;font:inherit;font-weight:600}
+@media(max-width:1200px){
+ .topnav{padding:0 2%}.nav-topline{gap:8px;flex-wrap:wrap;padding:7px 0}.ticker{flex:1;min-width:150px}.nav-menu{justify-content:flex-end}
+ .workspace{grid-template-columns:235px minmax(280px,1fr);align-items:start}.detail-panel{grid-column:1/-1;max-height:none}.map-wrap{height:630px}.chart-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.left-panel{max-height:450px}
+}
+@media(max-width:760px){
+ .hero-main{min-height:75px;padding:10px}.brand-mark{font-size:27px}.initiative-name{font-size:10px;letter-spacing:1.2px}.brand-copy h1{font-size:clamp(18px,5vw,25px)}.brand-copy p{font-size:10px}
+ .topnav{padding:8px}.nav-topline{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px;padding:0}.visitor-counter{padding:6px 9px}.ticker{grid-column:1/-1;grid-row:2;width:100%;min-width:0;padding:5px 0 2px}.nav-toggle{display:flex;grid-column:3;grid-row:1}.nav-menu{display:none;flex-direction:column;align-items:stretch;gap:3px;margin-top:8px;padding:5px 0 2px;border-top:1px solid #ffffff24}.nav-menu.is-open{display:flex}.nav-link{justify-content:flex-start;min-height:42px;padding:0 13px;border-left:0;border-radius:6px;font-size:11px}
+ .workspace{display:flex;flex-direction:column;padding:6px;gap:7px}.left-panel{width:100%;max-height:none;overflow:visible}.sidebar-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.map-wrap{height:360px;min-height:300px;width:100%;flex:none}.detail-panel{width:100%;max-height:none;overflow:visible}.detail-panel.hidden{display:none}.chart-grid{grid-template-columns:1fr}.chart-card{min-height:175px}.chart-holder{height:135px}.donut-layout{justify-content:center}.about-strip{align-items:flex-start;flex-direction:column;gap:4px}footer{align-items:flex-start;flex-direction:column}
+}
+@media(max-width:420px){
+ .sidebar-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.map-wrap{height:320px}.brand-mark{display:none}.visitor-counter{padding:6px 8px}.nav-toggle{padding:7px 9px;font-size:11px}
+}
+
+/* Compact desktop layout and single-row navigation */
+.topnav{padding:0 1.5%;background:#052e2bef}
+.nav-row{display:flex;align-items:center;gap:16px;min-height:45px;width:100%}
+.nav-row .visitor-counter{flex:0 0 auto}
+.nav-row .ticker{flex:1 1 100px;min-width:70px}
+.nav-row .nav-menu{display:flex;align-items:center;justify-content:flex-end;gap:1px;flex:0 0 auto;min-height:42px}
+.nav-row .nav-link{padding-left:9px;padding-right:9px;font-size:9px}
+.nav-toggle{display:none;align-items:center;gap:7px;border:1px solid #72bda6;border-radius:8px;padding:7px 10px;background:#0b755b;color:#fff;font:inherit;font-weight:800;cursor:pointer}
+.workspace{padding-top:4px!important;gap:6px!important}
+.map-wrap{height:clamp(542px,34vh,370px)!important;min-height:160px!important}
+.left-panel,.detail-panel{max-height:calc(100vh - 230px)!important;overflow:auto}
+@media(max-width:1120px){
+ .nav-row{gap:7px}.nav-row .nav-link{padding-left:6px;padding-right:6px;font-size:8px}
+ .map-wrap{height:320px!important}
+}
+@media(max-width:760px){
+ .nav-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;padding:5px 0}
+ .nav-row .ticker{grid-column:1/-1;grid-row:2;width:100%;min-width:0;padding:3px 0}
+ .nav-toggle{display:flex;grid-column:3;grid-row:1}
+ .nav-row .nav-menu{display:none;grid-column:1/-1;grid-row:3;flex-direction:column;align-items:stretch;width:100%;min-height:0;margin-top:5px;padding:5px 0;border-top:1px solid #ffffff25}
+ .nav-row .nav-menu.is-open{display:flex}
+ .nav-row .nav-link{min-height:38px;padding:0 12px;justify-content:flex-start;font-size:10px}
+ .workspace{padding-top:4px!important;gap:6px!important}
+ .map-wrap{height:290px!important;min-height:250px!important}
+ .left-panel,.detail-panel{max-height:none!important;overflow:visible}
+}
+@media(max-width:420px){.map-wrap{height:260px!important}}
 
 
-/* Project refinements */
-.hero{background:linear-gradient(90deg,rgba(5,38,48,.24),rgba(5,38,48,.05)),url('navbar.jpeg') center 52%/cover no-repeat;min-height:0;border-bottom:3px solid #08735c}
-.hero-overlay{min-height:105px;height:auto;background:linear-gradient(90deg,rgba(2,32,42,.58),rgba(2,32,42,.10));padding:18px 3%;gap:16px}
-.brand-mark{color:#fff;text-shadow:0 2px 8px #001a26}
-.brand-copy h1,.brand-copy p,.initiative{color:#fff;text-shadow:0 1px 5px #001a26}
-.initiative{border-left-color:#ffffffaa}
-.topnav{height:auto;min-height:46px;justify-content:center;flex-wrap:wrap;background:rgba(3,35,43,.92);padding:0 2%}
-.nav-link{display:flex;align-items:center;justify-content:center;min-height:44px;text-decoration:none;font-size:11px}
-.workspace{grid-template-columns:270px minmax(350px,1fr) 350px;height:620px}
-.year-buttons{grid-template-columns:repeat(3,1fr)}
-.location-select{width:100%;padding:11px 10px;border:1px solid #cbd7dd;border-radius:8px;background:#fff;color:#20364a;font:inherit}
-.sidebar-stats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px}
-.sidebar-stats>div{display:flex;align-items:center;gap:8px;padding:9px 7px;min-width:0;border:1px solid #e4eaed;border-radius:8px;background:#fbfdfd}
-.sidebar-stats strong{display:block;font-size:14px;color:#12315c;overflow-wrap:anywhere}
-.sidebar-stats small{display:block;font-size:10px;color:#5c6e7f;line-height:1.3;margin-top:3px}
-.mini-stat-icon{display:flex;align-items:center;justify-content:center;flex:0 0 27px;height:27px;border-radius:8px;background:#e5f4ef;color:#087a5e;font-size:18px;font-weight:800}
-.left-foot{margin-top:12px}
-.stats-panel{margin-top:8px}
-.about-strip{margin:8px 7px 0;padding:12px 16px;background:#fff;border:1px solid #d6e1e5;border-radius:10px;display:flex;gap:14px;align-items:center;color:#526978;font-size:11px;line-height:1.5}
-.about-strip strong{color:#12315c;white-space:nowrap}
-.visitor-counter{white-space:nowrap;color:#235548}
-@media(max-width:1200px){.workspace{grid-template-columns:260px minmax(300px,1fr);height:auto;min-height:570px}.detail-panel{position:absolute;z-index:700;right:14px;top:180px;width:min(360px,calc(100vw - 30px));height:520px;box-shadow:0 8px 35px #001e2c40}.sidebar-stats{grid-template-columns:1fr 1fr}.map-wrap{height:570px;min-height:480px}}
-@media(max-width:700px){.hero-overlay{min-height:95px;padding:12px 10px;gap:9px}.brand-copy h1{font-size:clamp(18px,5vw,25px)}.brand-copy p{font-size:10px}.topnav{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap}.nav-link{flex:0 0 auto;padding:0 14px}.workspace{display:flex;flex-direction:column;height:auto;min-height:0}.left-panel{max-height:none}.sidebar-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.map-wrap{height:460px;min-height:430px}.detail-panel{position:relative;top:auto;right:auto;width:auto;height:auto;max-height:none}.detail-panel.hidden{display:block}.about-strip{align-items:flex-start;flex-direction:column;gap:4px}.visitor-counter{order:3}}
 
-
-
-/* === ORIGINAL QGIS MAP INTEGRATION === */
-/* Keep the existing Leaflet map in the document so the rest of
-   your existing JavaScript does not fail. Show the real map above it. */
-
+/* Responsive map container */
 .map-wrap {
-  position: relative;
-  isolation: isolate;
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    min-width: 0;
+    height: clamp(340px, 62vh, 720px);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #d6e5e3;
 }
 
-.map-wrap #map {
-  z-index: 0;
+/* OpenLayers map fills the complete container */
+.year-map-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    border: 0;
+    display: block;
+    background: #e8efec;
 }
 
-/* The actual QGIS map for the selected year */
-.map-wrap .year-map-frame {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  display: block;
-  background: #e8efec;
-  z-index: 10;
-  visibility: visible;
+/* Allow the dashboard grid to shrink properly */
+.workspace {
+    grid-template-columns:
+        minmax(190px, 255px)
+        minmax(0, 1fr)
+        minmax(250px, 320px);
+    min-width: 0;
+    gap: 10px;
 }
 
-/* The old dashboard map controls operate on the illustrative map,
-   not the QGIS iframe. Hide them to avoid confusing controls. */
-.map-wrap .map-tools,
-.map-wrap .north,
-.map-wrap .map-legend {
-  display: none;
+.workspace > *,
+.map-wrap {
+    min-width: 0;
 }
 
-/* Keep the selected-year label visible above the QGIS map */
-.map-wrap .map-status {
-  z-index: 20;
-  pointer-events: none;
+/* Tablet */
+@media (max-width: 1180px) {
+    .workspace {
+        grid-template-columns:
+            minmax(190px, 230px)
+            minmax(0, 1fr);
+    }
+
+    .detail-panel {
+        grid-column: 1 / -1;
+        min-width: 0;
+    }
+
+    .map-wrap {
+        height: 58vh;
+        min-height: 380px;
+        max-height: 620px;
+    }
 }
 
+/* Mobile */
+@media (max-width: 760px) {
+    .workspace {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 8px;
+    }
+
+    .workspace > * {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .map-wrap {
+        width: 100%;
+        height: 55vh;
+        min-height: 320px;
+        max-height: 520px;
+    }
+
+    .detail-panel {
+        width: 100%;
+        max-height: none;
+        overflow: visible;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .map-wrap {
+        height: 360px;
+        min-height: 320px;
+    }
+}
 </style>
 </head>
 <body>
 <header class="hero">
-  <div class="hero-overlay">
-    <div class="brand-mark"><i class="fa-solid fa-dove"></i></div>
-    <div class="brand-copy">
-      <h1>Thane Creek Wetland Watch</h1>
-      <p>Mapping Wetland Change &amp; Monitoring Migratory Bird Habitats</p>
-    </div>
-    <div class="initiative"><strong>Innovate4Environment</strong><small>People | Nature | Resilient Cities</small></div>
+  <div class="hero-main">
+    <div class="brand-mark"><i class="fa-solid fa-dove" aria-hidden="true"></i></div>
+    <div class="brand-copy"><div class="initiative-name">Innovate4Environment</div><h1>Thane Creek Wetland Watch</h1><p>People <span aria-hidden="true">|</span> Nature <span aria-hidden="true">|</span> Resilient Cities</p></div>
   </div>
   <nav class="topnav" aria-label="Main navigation">
-    <a class="nav-link active" href="#monitor" data-section="monitor">Monitor</a>
-    <a class="nav-link" href="#changeSection" data-section="change">Change</a>
-    <a class="nav-link" href="#birdsSection" data-section="birds">Bird Habitats</a>
-    <a class="nav-link" href="#threatsSection" data-section="threats">Threats</a>
-    <a class="nav-link" href="#aboutSection" data-section="about">About</a>
+    <div class="nav-row">
+      <div class="visitor-counter" title="Visitor counter"><i class="fa-solid fa-users" aria-hidden="true"></i><div><strong id="visitorCount">201</strong><small>Visitors</small></div></div>
+      <div class="ticker" aria-label="Mapping Wetland Change and Monitoring Migratory Bird Habitats"><span>Mapping Wetland Change &amp; Monitoring Migratory Bird Habitats&nbsp;&nbsp; • &nbsp;&nbsp;Mapping Wetland Change &amp; Monitoring Migratory Bird Habitats&nbsp;&nbsp; • &nbsp;&nbsp;</span></div>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu"><i class="fa-solid fa-bars" aria-hidden="true"></i><span>Menu</span></button>
+      <div class="nav-menu" id="navMenu">
+        <a class="nav-link active" href="index.html">Monitor</a><a class="nav-link" href="change.html">Change</a><a class="nav-link" href="bird-habitats.html">Bird Habitats</a><a class="nav-link" href="threats.html">Threats</a><a class="nav-link" href="how-to-use.html">How to Use</a><a class="nav-link" href="about.html">About</a>
+      </div>
+    </div>
   </nav>
 </header>
-
 <main>
-  <section class="workspace" id="monitor">
-    <aside class="panel left-panel">
-      <div class="section-heading"><h2>Select Year</h2><span class="info" title="Choose a map year to update the dashboard.">i</span></div>
-      <div class="year-buttons" role="group" aria-label="Select map year">
-        <button type="button" data-year="2015" aria-pressed="false">2015</button><button type="button" class="selected" data-year="2020" aria-pressed="true">2020</button><button type="button" data-year="2025" aria-pressed="false">2025</button>
-      </div>
-      <div class="divider"></div>
-      <label class="field-label" for="wetlandSelect">Select Wetland Location</label>
-      <select id="wetlandSelect" class="location-select" aria-label="Select wetland location">
-        <option value="Panje Wetland" selected>Panje Wetland</option>
-        <option value="Thane Wetland">Thane Wetland</option>
-        <option value="Airoli Wetland">Airoli Wetland</option>
-        <option value="Navi Mumbai Mangroves">Navi Mumbai Mangroves</option>
-        <option value="Uran Wetland">Uran Wetland</option>
-      </select>
-      <div class="divider"></div>
-      <div class="section-heading"><h2>Key Statistics</h2></div>
-      <div class="sidebar-stats">
-        <div><span class="mini-stat-icon">⌁</span><span><strong id="sideArea">124 ha</strong><small>Wetland area</small></span></div>
-        <div><span class="mini-stat-icon">↘</span><span><strong id="sideChange">−16 ha</strong><small>Change since 2015</small></span></div>
-        <div><span class="mini-stat-icon">♧</span><span><strong id="sideBirds">68</strong><small>Bird species recorded</small></span></div>
-        <div><span class="mini-stat-icon">⚠</span><span><strong id="sideThreats">4</strong><small>Threat categories</small></span></div>
-        <div><span class="mini-stat-icon">◎</span><span><strong id="sidePriority">High</strong><small>Conservation priority</small></span></div>
-        <div><span class="mini-stat-icon">◫</span><span><strong id="sideYear">2020</strong><small>Selected year</small></span></div>
-      </div>
-     
-    </aside>
-
-    <section class="map-wrap" aria-label="Interactive wetland map">
-      <div id="map"></div>
-      <iframe
-        id="yearMap"
-        class="year-map-frame"
-        src="maps/qgis2web_2026_10_14-17_14_57_708679/qgis2web_2026_10_14-17_14_57_708679"
-        title="Interactive Thane Creek wetland map for 2020"
-        loading="eager"
-        allowfullscreen
-        aria-label="Interactive map for the selected year">
-      </iframe>
-      <div class="map-tools">
-        <button id="zoomIn" title="Zoom in">+</button><button id="zoomOut" title="Zoom out">−</button><button id="homeMap" title="Reset map"><i class="fa-solid fa-house"></i></button>
-      </div>
-      <div class="north">N <i class="fa-solid fa-location-arrow"></i></div>
-      <div class="map-legend">
-        <div><span class="legend-swatch blue"></span>Wetland</div><div><span class="legend-swatch green"></span>Mangroves</div><div><span class="legend-swatch yellow"></span>Agriculture</div><div><span class="legend-swatch red"></span>Built-up</div><div><span class="legend-swatch orange"></span>Open Land</div><div><span class="legend-swatch water"></span>Water</div><div><span class="legend-dot"></span>Bird Record</div><div><span class="legend-triangle">▲</span>Threat Location</div>
-      </div>
-      <div class="map-status" id="mapStatus">Map view · 2020</div>
-    </section>
-
-    <aside class="panel detail-panel" id="detailPanel">
-      <button class="close-detail" id="closeDetail" aria-label="Close wetland details">×</button>
-      <h2 id="detailTitle">Panje Wetland</h2>
-      <div class="detail-tabs">
-        <button class="detail-tab active" data-tab="overview">Overview</button><button class="detail-tab" data-tab="change">Change</button><button class="detail-tab" data-tab="records">Bird Records</button><button class="detail-tab" data-tab="threats">Threats</button><button class="detail-tab" data-tab="photos">Photos</button>
-      </div>
-      <div id="detailContent" class="detail-content"></div>
-    </aside>
-  </section>
-
-  <section class="stats-panel">
-    <div class="chart-grid">
-      <article class="chart-card" id="changeSection"><h3>Wetland Area Change <span class="info" title="Illustrative area estimates by year">i</span></h3><div class="chart-holder"><canvas id="areaChart"></canvas></div></article>
-      <article class="chart-card"><h3>LULC within Wetland Buffer (<span id="lulcYear">2020</span>) <span class="info" title="Land use / land cover distribution">i</span></h3><div class="donut-layout"><div class="donut-holder"><canvas id="lulcChart"></canvas></div><div class="chart-legend"><span><i class="sq water"></i>Water <b>32%</b></span><span><i class="sq green"></i>Mangroves <b>28%</b></span><span><i class="sq yellow"></i>Agriculture <b>12%</b></span><span><i class="sq red"></i>Built-up <b>18%</b></span><span><i class="sq orange"></i>Open Land <b>10%</b></span></div></div></article>
-      <article class="chart-card" id="birdsSection"><h3>Migratory Bird Records (Top Species) <span class="info" title="Illustrative recorded observations">i</span></h3><div class="chart-holder"><canvas id="birdChart"></canvas></div></article>
-      <article class="chart-card" id="threatsSection"><h3>Environmental Threats (<span id="threatYear">2020</span>) <span class="info" title="Illustrative mapped threat counts">i</span></h3><div class="chart-holder"><canvas id="threatChart"></canvas></div></article>
+<section class="workspace" id="monitor">
+  <aside class="panel left-panel">
+    <div class="section-heading"><h2>Select Year</h2><span class="info" tabindex="0" title="Choose 2015, 2020 or 2025. The map and dashboard values update together.">i</span></div>
+    <div class="year-buttons" role="group" aria-label="Select map year">
+      <button type="button" data-year="2015" aria-pressed="false">2015</button><button type="button" class="selected" data-year="2020" aria-pressed="true">2020</button><button type="button" data-year="2025" aria-pressed="false">2025</button>
     </div>
+    <div class="divider"></div>
+    <div><label class="field-label" for="wetlandSelect">Select Wetland Location</label>
+      <select id="wetlandSelect" class="location-select">
+        <option value="Panje Wetland" selected>Panje Wetland</option>
+        <option value="NRI Complex Wetland">NRI Complex Wetland</option>
+        <option value="Training Ship Chanakya (TSC) Wetland">Training Ship Chanakya (TSC) Wetland</option>
+        <option value="Bhandup Pumping Station (BPS) Wetland">Bhandup Pumping Station (BPS) Wetland</option>
+        <option value="Thane Creek Flamingo Sanctuary (TCFS)">Thane Creek Flamingo Sanctuary (TCFS)</option>
+        <option value="Airoli Wetland">Airoli Wetland</option>
+      </select>
+    </div>
+    <div class="divider"></div>
+    <div class="section-heading"><h2>Key Statistics</h2></div>
+    <div class="sidebar-stats">
+      <div><span class="mini-stat-icon"><i class="fa-solid fa-water"></i></span><span><strong id="sideArea">124 ha</strong><small>Wetland area</small></span></div>
+      <div><span class="mini-stat-icon"><i class="fa-solid fa-arrow-trend-down"></i></span><span><strong id="sideChange">−16 ha</strong><small>Change since 2015</small></span></div>
+      <div><span class="mini-stat-icon"><i class="fa-solid fa-dove"></i></span><span><strong id="sideBirds">68</strong><small>Bird species</small></span></div>
+      <div><span class="mini-stat-icon"><i class="fa-solid fa-triangle-exclamation"></i></span><span><strong id="sideThreats">4</strong><small>Threat categories</small></span></div>
+      <div><span class="mini-stat-icon"><i class="fa-solid fa-shield-halved"></i></span><span><strong id="sidePriority">High</strong><small>Priority</small></span></div>
+      <div><span class="mini-stat-icon"><i class="fa-regular fa-calendar"></i></span><span><strong id="sideYear">2020</strong><small>Selected year</small></span></div>
+    </div>
+    
+  </aside>
+  <section class="map-wrap" aria-label="Year-specific OpenLayers wetland map">
+    <iframe id="yearMap" class="year-map-frame" title="OpenLayers wetland map" src="maps/qgis2web_2026_10_14-17_14_57_708679/qgis2web_2026_10_14-17_14_57_708679" loading="eager"></iframe>
+    <div class="map-status" id="mapStatus">OpenLayers map · 2020</div>
   </section>
-  
+  <aside class="panel detail-panel" id="detailPanel">
+    <button class="close-detail" id="closeDetail" type="button" aria-label="Close wetland details" title="Close details">×</button>
+    <h2 id="detailTitle">Panje Wetland</h2>
+    <div class="detail-tabs">
+      <button class="detail-tab active" data-tab="overview">Overview</button><button class="detail-tab" data-tab="change">Change</button><button class="detail-tab" data-tab="records">Bird Records</button><button class="detail-tab" data-tab="threats">Threats</button><button class="detail-tab" data-tab="references">References</button><button class="detail-tab" data-tab="photos">Photos</button>
+    </div>
+    <div id="detailContent" class="detail-content"></div>
+  </aside>
+</section>
+<section class="stats-panel" aria-label="Wetland data charts">
+  <div class="stats-title"><h2>Dashboard Insights</h2><span class="info" tabindex="0" title="Charts use values from the supplied Data Sheet workbook. Bird counts are reported by season in the source sheet and are not assigned to an individual wetland.">i</span></div>
+  <div class="chart-grid">
+    <article class="chart-card" id="changeSection"><h3>Wetland Area Change <span class="info" tabindex="0" title="Area values and year labels are shown as entered in the supplied workbook. Repeated labels are preserved exactly.">i</span></h3><div class="chart-holder"><canvas id="areaChart"></canvas></div></article>
+    <article class="chart-card"><h3>Land Use / Land Cover (<span id="lulcYear">2020</span>) <span class="info" tabindex="0" title="Land Use Land Cover percentages are from the supplied workbook and are shown for the selected year.">i</span></h3><div class="donut-layout"><div class="donut-holder"><canvas id="lulcChart"></canvas></div><div class="chart-legend" id="lulcLegend"></div></div></article>
+    <article class="chart-card" id="birdsSection"><h3>Migratory Bird Records <span class="info" tabindex="0" title="Maximum counts by bird species and season, exactly as listed in the supplied workbook. The sheet does not identify a specific wetland location.">i</span></h3><div class="chart-holder"><canvas id="birdChart"></canvas></div></article>
+    <article class="chart-card" id="threatsSection"><h3>Environmental Threats (<span id="threatYear">2020</span>) <span class="info" tabindex="0" title="Environmental threat values are shown as recorded in the supplied workbook; the source sheet does not specify a unit.">i</span></h3><div class="chart-holder"><canvas id="threatChart"></canvas></div></article>
+  </div>
+</section>
+<section class="about-strip" id="aboutSection"><strong>About this dashboard</strong><span>Explore year-wise wetland change, bird habitat indicators and potential environmental pressures across selected locations. Use the References tab for data/source guidance. This prototype is not an official monitoring dataset.</span></section>
 </main>
-<footer><span>Thane Creek Wetland Watch</span><span>Educational prototype · Not an official monitoring dataset</span><span class="visitor-counter">Visitors: <strong id="visitorCount">201</strong></span><button id="exportData"><i class="fa-solid fa-download"></i> Export summary CSV</button></footer>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<footer><span>Thane Creek Wetland Watch</span><span>Educational prototype · Not an official monitoring dataset</span><button id="exportData" type="button"><i class="fa-solid fa-download"></i> Export summary CSV</button></footer>
 <script>
-const $ = (s, root=document) => root.querySelector(s);
-const $$ = (s, root=document) => [...root.querySelectorAll(s)];
-const years = ["2015","2020","2025","Latest"];
-const yearData = {
-  "2015": {area:3631, change:"—", pct:"—", birds:95},
-  "2020": {area:3215, change:"−416 ha", pct:"−11.5%", birds:112},
-  "2025": {area:2798, change:"−833 ha", pct:"−22.9%", birds:118},
-  "Latest": {area:2798, change:"−833 ha", pct:"−22.9%", birds:118}
-};
-
-
-// Keep each exported QGIS web map in its own folder:
-// Map/2015/index.html, Map/2020/index.html, and Map/2025/index.html.
-// Change these relative paths if your folders use a different location.
-const MAP_PATHS = {
-  // Each value must point to that year's exported QGIS index.html.
-  "2015": "maps/qgis2web_2026_10_14-17_14_57_708679/qgis2web_2026_10_14-17_14_57_708679",
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const wetlandData = [{"name": "Panje Wetland", "area": "124 ha", "coords": "Approximately 18.9003° N, 72.9506° E", "priority": "High", "birds": "50", "migratory": "31 recorded", "overview": ["Type: Coastal creek-associated wetland", "Location: Panje–Dongri area, Uran, Raigad district, Maharashtra", "Coordinates: Approximately 18.9003° N, 72.9506° E", "Site area: 124 ha", "Habitat type: Mangroves, intertidal mudflats, shallow water, reed beds and open wetland areas", "Bird species recorded: 50", "Migratory species: 31 recorded", "Key species: Greater Flamingo, Lesser Flamingo, Painted Stork, Black-tailed Godwit, Curlew Sandpiper and Little Stint", "Major threats: Altered tidal inflow, reclamation, urban development and disturbance", "Conservation priority: High"], "change": ["Analysis area: Wetland polygon and surrounding 2.5 km buffer, analysed separately", "Observed trend: Major settlement expansion and changes in agriculture, salt pans, mangroves and wetland cover in the surrounding landscape", "Data source: BNHS (2019), supplemented by Landsat and Sentinel-2 analysis"], "records": ["Species recorded: 50", "Migratory species: 31", "Near-threatened species: 6", "Vulnerable species: 1", "Observed individual-count range: 565–11,560 during the BNHS survey", "Winter bird numbers: 15,000–20,000 and potential counts up to 50,000", "Key recorded species: Greater Flamingo, Lesser Flamingo, Painted Stork, Black-tailed Godwit, Curlew Sandpiper and Little Stint"], "threats": ["Hydrological alteration: Tidal-water inflow affected by sluice-gate management", "Reclamation: Development pressure around the wetland", "Urbanisation: Development and settlement expansion in the surrounding landscape", "Bird disturbance: Pressure on wetland bird habitat", "Pollution and waste:"], "photos": [["Wetland landscape: ToI", "images/panje-wetland-landscape.jpg"], ["Migratory birds: source and image credit required - In 2018, for the first time in 15 years, a Red-necked Phalarope was spotted at Panje. Photo: Aishwarya Sridhar.", "images/panje-migratory-birds.jpg"], ["Tidal-water infrastructure: This sluice gate (above) blocked the natural flow of water from the sea to Panje’s shallow waterbodies, rendering what was once a living estuarine area into a dry wasteland (top). But Panje is not beyond repair, if quick action is taken to prevent builders from damaging it. Photos: Aishwarya Sridhar.", "images/panje-tidal-water-infrastructure.jpg"]], "refs": ["Bombay Natural History Society (BNHS). (2019). Coastal Wetlands and Waterbirds of Navi Mumbai: Current Status. https://www.bnhs.org/public/pdf_documents/1575895935.pdf", "Sridhar, A. (2021). The Panje Wetlands. Sanctuary Nature Foundation. https://sanctuarynaturefoundation.org/article/the-panje-wetlands", "Hindustan Times. (2022). NGT dismisses CIDCO plea, upholds CRZ-I status of Panje wetland. https://www.hindustantimes.com/cities/mumbai-news/ngt-dismisses-cidco-plea-upholds-crz-1-status-of-panje-wetland-101645641117555-amp.html", "Elucidating the Migratory Routes of Waterbirds Wintering Along the Coast of Maharashtra. (2021). ResearchGate. https://www.researchgate.net/publication/354694729_Elucidating_the_Migratory_Routes_of_Waterbirds_Wintering_Along_the_Coast_of_Maharashtra", "Adani Navi Mumbai International Airport Limited. (2025). Half-Yearly Environmental and CRZ Compliance Report: April–September 2025. https://navimumbai.adaniairports.com/-/media/Images/AdaniAirNaviMumbaiAirport/Reports/Environmental-Compliances/Half-Yearly-Environment--CRZ-Compliance-Reports/NMIAL--Half_Yearly_Compliance-Report-April-2025--Sept-2025.pdf"], "about": ["BNHS — Coastal Wetlands and Waterbirds of Navi Mumbai", "NMIA Long-Term Bird Monitoring Programme, 2018–2023", "Sanctuary Nature Foundation — The Panje Wetlands", "Hindustan Times — NGT and Panje wetland protection"]}, {"name": "NRI Complex Wetland", "area": "19 ha", "coords": "Approximately 19.0067° N, 73.0118° E", "priority": "High", "birds": "37", "migratory": "22 recorded", "overview": ["Type: Coastal, creek-associated wetland", "Location: Near NRI Complex, Seawoods, Navi Mumbai, Maharashtra", "Coordinates: Approximately 19.0067° N, 73.0118° E", "Site area: 19 ha (BNHS, 2019)", "Habitat type: Shallow water bodies, mangroves and managed fishing ponds", "Bird species recorded: 37", "Migratory species: 22 recorded", "Key species: Lesser Flamingo, Greater Flamingo, Painted Stork, Pied Avocet, Northern Pintail, Northern Shoveler and Black-winged Stilt", "Major threats: Altered water levels, tidal-flow management, urban development and disturbance", "Conservation priority: High"], "change": ["Analysis area: Wetland polygon and surrounding 2.5 km buffer, analysed separately", "Observed trend: The surrounding landscape shows changes in settlement, mangrove, wetland and other land-cover categories. The BNHS report provides historical LULC data for the buffer area.", "Data source: BNHS (2019), supplemented by Landsat and Sentinel-2 analysis"], "records": ["Species recorded: 37", "Migratory species: 22", "Near-threatened species: 4", "Vulnerable species: 1", "Observed individual-count range: 130–5,755 during the BNHS survey period in 2018", "Additional published record: 7,000 Lesser Flamingos were recorded at NRI Pond in January 2019 in a separate study.", "Key recorded species: Lesser Flamingo, Greater Flamingo, Painted Stork, Pied Avocet, Northern Pintail, Northern Shoveler and Black-winged Stilt."], "threats": ["Hydrological alteration: Tidal-water entry is regulated by a sluice gate and culverts.", "Water-level fluctuations: Managed water levels and pond drainage can change the availability of feeding and roosting habitat.", "Urbanisation: Residential development borders parts of the wetland.", "Habitat disturbance: Changes in water levels and human activity affect waterbird use of the wetland.", "Pollution and waste: Include as a mapped threat only when supported by dated photographs, field observations or a reliable, published source."], "photos": [["Wetland landscape and urban surroundings: The NRI Complex wetland is an important waterbird habitat within Navi Mumbai's rapidly urbanising landscape. Source for reference: Mongabay India — wetland conservation report.", "images/nri-wetland-landscape.jpg"], ["Migratory birds: Lesser Flamingos, Greater Flamingos, Painted Storks or other waterbirds recorded at NRI Pond. BNHS (2019) — Coastal Wetlands and Waterbirds of Navi Mumbai.", "images/nri-migratory-birds.jpg"], ["Flamingos feeding in shallow water - Flamingos use the shallow waters of the NRI Complex wetland as a seasonal feeding and roosting habitat. Source: Mid-day — Seawoods flamingo photographs (2026).", "images/nri-flamingos-feeding.jpg"], ["Resident wetland birds - Resident waterbirds contribute to the biodiversity of the NRI Complex wetland alongside seasonal migratory species. Source: BNHS — Flamingo and Bird Walk at NRI Pond.", "images/nri-resident-birds.jpg"]], "refs": ["Bombay Natural History Society (BNHS). (2019). Coastal Wetlands and Waterbirds of Navi Mumbai: Current Status. https://www.bnhs.org/public/pdf_documents/1575895935.pdf", "Narwade, S. S., Prabhu, M., Shaikh, P., Karulkar, A., & Rahmani, A. R. (2023). Monthly Variation in Waterbird Count of Wetlands behind NRI Colony and TS Chanakya in Navi Mumbai, Maharashtra, India. Journal of the Bombay Natural History Society, 120. https://doi.org/10.17087/jbnhs/2023/v120/165119", "Elucidating the Migratory Routes of Waterbirds Wintering Along the Coast of Maharashtra. (2021). https://www.researchgate.net/publication/354694729_Elucidating_the_Migratory_Routes_of_Waterbirds_Wintering_Along_the_Coast_of_Maharashtra", "Mongabay India. (2020). Saving Navi Mumbai wetlands from turning into a golf course. https://india.mongabay.com/2020/11/navi-mumbai-couple-fights-to-save-a-bird-haven-from-becoming-a-golf-course/", "BNHS (2019): Coastal Wetlands and Waterbirds of Navi Mumbai - wetland descriptions and bird records.", "Mid-day (2026): Seawoods flamingo photographs — recent site-related photographic reference."], "about": ["BNHS: Coastal Wetlands and Waterbirds of Navi Mumbai: Current Status", "Journal of the Bombay Natural History Society: Monthly waterbird counts behind NRI Colony and T.S. Chanakya", "Migratory-route study: Elucidating the Migratory Routes of Waterbirds Wintering Along the Coast of Maharashtra", "Mongabay India: Background on wetland conservation and development pressure near NRI and T.S. Chanakya"]}, {"name": "Training Ship Chanakya (TSC) Wetland", "area": "13 ha", "coords": "Approximately 19°00′56.54″ N, 73°00′20.48″ E", "priority": "High", "birds": "21", "migratory": "11", "overview": ["Type: Coastal, creek-associated wetland", "Location: Near Training Ship Chanakya, Nerul-Seawoods, Navi Mumbai, Maharashtra", "Coordinates: Approximately 19°00′56.54″ N, 73°00′20.48″ E", "Site area: 13 ha (BNHS, 2019)", "Habitat type: Shallow water, mangroves, mudflats and adjoining open land", "Bird species recorded: 21", "Migratory species: 11", "Key species: Lesser Flamingo, Greater Flamingo, shorebirds and other waterbirds documented in surveys of Thane Creek.", "Major threats: Urban development, changes in water levels, hydrological alteration and disturbance", "Conservation priority: High"], "change": ["Analysis area: Wetland polygon and surrounding 2.5 km buffer, analysed separately", "Observed trend: Change in mangrove, settlement, wetland and other land-cover categories in the surrounding landscape.", "Land-use context: The area is influenced by urban development and changes in wetland habitat.", "Data source: BNHS (2019), supplemented by Landsat and Sentinel-2 satellite imagery."], "records": ["Bird species recorded: 21", "Migratory species: 11", "Key species: Lesser Flamingo, Greater Flamingo and other waterbirds reported in surveys of Thane Creek.", "Additional published record: A separate study reported a maximum count of 3,521 Lesser Flamingos at TSC in May 2018.", "Monitoring period: BNHS wetland survey, January–September 2018, supplemented by published bird-monitoring studies.", "Data limitation: The maximum flamingo count is a species-specific observation, not the total bird population or an annual population estimate."], "threats": ["Urbanisation: Development around region places pressure on wetland habitats.", "Hydrological alteration: Changes in tidal-water entry and water levels may affect shallow-water feeding areas.", "Habitat modification: Changes in wetland vegetation, mudflats and open-water areas may influence habitat suitability for waterbirds.", "Bird disturbance: Human activity near feeding and roosting sites may disturb birds."], "photos": [["TSC Wetland landscape - The TSC Wetland is an important coastal habitat within the urban landscape of Navi Mumbai. Reference: BNHS (2019) — Coastal Wetlands and Waterbirds of Navi Mumbai.", "images/tsc-wetland-landscape.jpg"], ["Migratory flamingos - Flamingos use the shallow waters of TSC Wetland for seasonal feeding and resting. Reference: The Indian Express — Flamingos adorn TS Chanakya wetland.", "images/tsc-migratory-flamingos.jpg"], ["Shorebirds and feeding habitat - Shallow water and exposed mudflats provide feeding habitat for migratory shorebirds. Reference: BNHS wetland and waterbird report.", "images/tsc-shorebirds-feeding-habitat.jpg"]], "refs": ["Bombay Natural History Society (BNHS). (2019). Coastal Wetlands and Waterbirds of Navi Mumbai: Current Status. https://www.bnhs.org/public/pdf_documents/1575895935.pdf", "Elucidating the Migratory Routes of Waterbirds Wintering Along the Coast of Maharashtra. (2021). https://www.researchgate.net/publication/354694729_Elucidating_the_Migratory_Routes_of_Waterbirds_Wintering_Along_the_Coast_of_Maharashtra", "Monthly Variation in Waterbird Count of Wetlands behind NRI Colony and TS Chanakya in Navi Mumbai, Maharashtra, India. (2023). Journal of the Bombay Natural History Society. https://doi.org/10.17087/jbnhs/2023/v120/165119", "Bajaru, S., Prabhu, M., Khot, R., & Apte, D. (2019). Coastal Wetlands and Waterbirds of Navi Mumbai: Current Status. Bombay Natural History Society. https://www.bnhs.org/public/pdf_documents/1575895935.pdf", "Narwade, S. S., Prabhu, M., Shaikh, P., Karulkar, A., Arvind, C., & Rahmani, A. R. (2023). Monthly Variation in Waterbird Count of Wetlands behind NRI Colony and TS Chanakya in Navi Mumbai, Maharashtra, India. Journal of the Bombay Natural History Society, 120. https://doi.org/10.17087/jbnhs/2023/v120/165119", "Rane, H., & Katti, T. (2020). Elucidating the Migratory Routes of Waterbirds Wintering Along the Coast of Maharashtra. ResearchGate. https://www.researchgate.net/publication/354694729_Elucidating_the_Migratory_Routes_of_Waterbirds_Wintering_Along_the_Coast_of_Maharashtra", "Mongabay India. (2020). Saving Navi Mumbai wetlands from turning into a golf course. https://india.mongabay.com/2020/11/navi-mumbai-couple-fights-to-save-a-bird-haven-from-becoming-a-golf-course/"], "about": []}, {"name": "Bhandup Pumping Station (BPS) Wetland", "area": "11 ha", "coords": "Approximately 19°08′21.31″ N, 72°57′42.10″ E", "priority": "High", "birds": "30", "migratory": "14", "overview": ["Type: Coastal, creek-associated wetland", "Location: Bhandup Pumping Station area, eastern Mumbai, Maharashtra", "Coordinates: Approximately 19°08′21.31″ N, 72°57′42.10″ E", "Site area: 11 ha (BNHS, 2019)", "Habitat type: Mangroves, shallow water, intertidal mudflat & adjacent wetland habitat", "Bird species recorded: 30", "Migratory species: 14", "Key species: Lesser Flamingo, Greater Flamingo, Black-tailed Godwit and Indian Spot-billed Duck migratory shorebirds recorded in the wider Thane Creek landscape", "Major threats: Urban development, hydrological changes, habitat disturbance and potential pollution pressure", "Conservation priority: High"], "change": ["Analysis area: Wetland polygon and surrounding 2.5 km buffer, analysed separately.", "Observed trend: Within the surrounding buffer, settlement cover increased from 8.69% in 1973 to 40.21% in 2018. Mangrove cover increased from 42.90% to 51.08% over the same period, while the mapped wetland category declined from 22.66% to 5.31%.", "Interpretation: These figures describe land-cover changes in the surrounding landscape, not the measured area change of the BPS wetland itself.", "Data source: BNHS (2019), supplemented by Landsat and Sentinel-2 satellite imagery."], "records": ["Bird species recorded: 30", "Migratory species: 14", "Near-threatened species: 4", "Observed individual-count range: 12–3,352 during the BNHS survey.", "Additional published record: During a November 2017 survey, 450 Black-tailed Godwits, 80 Black-winged Stilts, 36 Northern Shovelers and 31 Common Coots were recorded at high tide.", "Key recorded species: Lesser Flamingo, Black-tailed Godwit, Black-winged Stilt, Northern Shoveler, Common Coot, Painted Stork and Garganey."], "threats": ["Landfilling – Majorly due to shortage of Urban Land", "Urban and infrastructure pressure: The wetland lies within a heavily developed metropolitan landscape.", "Habitat disturbance: Human activity and disturbance near feeding and roosting sites may affect bird use.", "Pollution and waste: Waste accumulation has been documented in the BPS area; a clean-up drive removed approximately 400 kg of waste from BPS and adjoining sanctuary areas, as reported by Hindustan Times.", "Mangrove habitat pressure: The mangrove ecosystem faces anthropogenic pressures, including disturbance and unsustainable visitor activity."], "photos": [["Flamingos at BPS - Flamingos gathering in the shallow waters near Bhandup Pumping Station. Source: Mid-day photo gallery", "images/bps-flamingos.jpg"], ["Flamingos in flight Source: Birdwatching Trail at Bhandup Pumping Station — photo page.", "images/bps-flamingos-in-flight.jpg"], ["Painted Stork - Painted Stork recorded at Bhandup Pumping Station. Source: Birds of India — Painted Stork.", "images/bps-painted-stork.jpg"], ["Herons and ibises - Herons and ibises using the wetland for feeding and resting. Source: Yogictravel — Wild Mumbai: Birding at BPS.", "images/bps-herons-ibises.jpg"]], "refs": ["Bombay Natural History Society (BNHS). (2019). Coastal Wetlands and Waterbirds of Navi Mumbai: Current Status. https://www.bnhs.org/public/pdf_documents/1575895935.pdf", "Elucidating the Migratory Routes of Waterbirds Wintering Along the Coast of Maharashtra. (2021). https://www.researchgate.net/publication/354694729_Elucidating_the_Migratory_Routes_of_Waterbirds_Wintering_Along_the_Coast_of_Maharashtra", "Adhikari, O. D. (2019). Waterbirds from the mudflats of Thane Creek, Mumbai, Maharashtra, India: A review of distribution records from India. Journal of Threatened Taxa, 11(7), 13925–13930. https://doi.org/10.11609/jott.4656.11.7.13925-13930", "Kasambe, R., & Surve, S. S. (2021–2022). Birds of Bhandup Pumping Station and adjoining area, Mumbai, Maharashtra. Newsletter for Birdwatchers, 61(6) and 62(1). https://www.researchgate.net/publication/364836832_Birds_of_Bhandup_Pumping_Station_and_adjoining_area_Mumbai_Maharashtra_Newsletter_for_Birdwatchers_Part-1_Nov-Dec_2021_Part-II_Jan-Feb_2022_621_3-8", "Wetlands International South Asia. (2018). Awareness excursion at Thane Creek Flamingo Sanctuary. https://south-asia.wetlands.org/awareness-excursion-thane-creek-flamingo-sanctuary/"], "about": []}, {"name": "Thane Creek Flamingo Sanctuary (TCFS)", "area": "16.90 km² (1,690 ha)", "coords": "Approximately 19.05° N, 72.97° E (approximate reference point; not the official sanctuary boundary)", "priority": "Protected sanctuary", "birds": "Bird diversity recorded (no numeric species total supplied)", "migratory": "Migratory shorebirds", "overview": ["Type: Coastal creek, mangrove and intertidal wetland ecosystem", "Location: Thane Creek, Maharashtra, spanning parts of Mumbai, Thane and Navi Mumbai", "Coordinates: Approximately 19.05° N, 72.97° E (approximate reference point; not the official sanctuary boundary)", "Official sanctuary area: 16.90 km² (1,690 ha)", "Habitat type: Mangroves, tidal creeks, intertidal mudflats and adjacent waters", "Bird diversity: Flamingos, migratory shorebirds, herons, egrets and other waterbirds", "Key species: Greater Flamingo, Lesser Flamingo, Black-tailed Godwit, Black-winged Stilt, Painted Stork and other waterbirds", "Major threats: Solid-waste pollution, urban development, habitat disturbance and changes to coastal hydrology", "Conservation status: Protected as Thane Creek Flamingo Sanctuary; the broader Thane Creek wetland was designated a Ramsar Site in 2022."], "change": ["Analysis area: Official sanctuary boundary and surrounding landscape, analysed separately", "Change indicators: Mangrove cover, wetland extent, open water, mudflats and built-up land", "Observed trend: The Thane Creek landscape faces urban development pressure, while mangroves and intertidal habitats remain important ecological components", "Data source: Landsat, Sentinel-2, official sanctuary boundaries."], "records": ["Bird groups: Migratory shorebirds, flamingos, resident waterbirds and other wetland-associated birds", "Key records: Greater Flamingo, Lesser Flamingo, Painted Stork, Black-tailed Godwit and Black-winged Stilt", "Monitoring sources: BNHS surveys, Asian Waterbird Census and published studies"], "threats": ["Solid-waste pollution: Waste accumulation can affect mangroves, tidal channels and wetland habitat.", "Urbanisation: Development around the creek places pressure on the coastal ecosystem.", "Hydrological alteration: Changes in tidal connectivity and water movement can affect habitat availability.", "Habitat disturbance: Human activity can disturb feeding and roosting birds.", "Mangrove degradation: Physical disturbance and land-use changes affect mangrove habitat."], "photos": [["Thane Creek hosts a variety of migratory birds. (Picture courtesy: The Indian Express)", "images/tcfs-migratory-birds.jpg"], ["Flamingo flock at Thane Creek. Photographer: Dr. Raju Kasambe · 29 March 2016", "images/tcfs-flamingo-flock.jpg"], ["Credit – Bagpackingwithmylens", "images/tcfs-wetland-photo-credit-bagpackingwithmylens.jpg"]], "refs": ["Ministry of Environment, Forest and Climate Change. Thane Creek Flamingo Sanctuary — Eco-Sensitive Zone notification. https://moef.gov.in/uploads/2020/08/thane-creek.pdf", "Ramsar Sites Information Service. Thane Creek. https://rsis.ramsar.org/", "Bombay Natural History Society (BNHS). (2019). Coastal Wetlands and Waterbirds of Navi Mumbai: Current Status. https://www.bnhs.org/public/pdf_documents/1575895935.pdf", "Wetlands International South Asia. Asian Waterbird Census India. https://south-asia.wetlands.org/asian-waterbird-census-india-2/"], "about": []}];
+const spreadsheetData = {"areaSeries":[{"sourceName":"Panje Wetland","rows":[{"year":2015,"ha":156},{"year":2020,"ha":140},{"year":2015,"ha":124}]},{"sourceName":"NRI Complex Wetland","rows":[{"year":2015,"ha":22},{"year":2020,"ha":20},{"year":2015,"ha":19}]},{"sourceName":"TSC Wetland ","rows":[{"year":2015,"ha":16},{"year":2020,"ha":14},{"year":2015,"ha":13}]},{"sourceName":"TSC Wetland ","rows":[{"year":2015,"ha":14},{"year":2020,"ha":12},{"year":2015,"ha":11}]},{"sourceName":"Airoli Wetland","rows":[{"year":2015,"ha":35},{"year":2020,"ha":32},{"year":2015,"ha":30}]}],"lulcClasses":[{"name":"Water","values":{"2015":41,"2020":44,"2025":44}},{"name":"Mangroves","values":{"2015":23,"2020":20,"2025":17}},{"name":"Flooded Vegetation","values":{"2015":14,"2020":12,"2025":11}},{"name":"Rangeland","values":{"2015":5,"2020":5,"2025":6}},{"name":"Built Area","values":{"2015":7,"2020":10,"2025":14}},{"name":"Bare Ground","values":{"2015":10,"2020":9,"2025":8}}],"threatGroups":[{"sourceName":"Panje Wetland","rows":[{"category":"Encroachment and reclamation","values":{"2015":30,"2020":32,"2025":35}},{"category":"Altered tidal inflow / blocked sluice gates","values":{"2015":25,"2020":27,"2025":28}},{"category":"Urban development and construction","values":{"2015":20,"2020":20,"2025":20}},{"category":"Habitat disturbance","values":{"2015":15,"2020":12,"2025":10}},{"category":"Waste and water pollution","values":{"2015":10,"2020":9,"2025":7}}]},{"sourceName":"NRI Complex Wetland","rows":[{"category":"Encroachment and reclamation","values":{"2015":25,"2020":30,"2025":35}},{"category":"Urban development and construction","values":{"2015":25,"2020":25,"2025":25}},{"category":"Habitat disturbance","values":{"2015":20,"2020":18,"2025":15}},{"category":"Waste and water pollution","values":{"2015":15,"2020":15,"2025":15}},{"category":"Changes in water flow and hydrology","values":{"2015":15,"2020":12,"2025":10}}]},{"sourceName":"TSC Wetland","rows":[{"category":"Encroachment and reclamation","values":{"2015":25,"2020":30,"2025":35}},{"category":"Urban development and construction","values":{"2015":25,"2020":28,"2025":30}},{"category":"Habitat disturbance","values":{"2015":20,"2020":18,"2025":15}},{"category":"Waste and water pollution","values":{"2015":15,"2020":14,"2025":12}},{"category":"Changes in water flow and hydrology","values":{"2015":15,"2020":10,"2025":8}}]},{"sourceName":"BPS Wetland ","rows":[{"category":"Encroachment and reclamation","values":{"2015":25,"2020":28,"2025":32}},{"category":"Urban development and construction","values":{"2015":20,"2020":22,"2025":25}},{"category":"Habitat disturbance","values":{"2015":15,"2020":15,"2025":15}},{"category":"Waste and water pollution","values":{"2015":20,"2020":20,"2025":18}},{"category":"Changes in water flow and hydrology","values":{"2015":20,"2020":15,"2025":10}}]},{"sourceName":"Airoli Wetland","rows":[{"category":"Encroachment and reclamation","values":{"2015":20,"2020":25,"2025":30}},{"category":"Urban development and construction","values":{"2015":25,"2020":28,"2025":30}},{"category":"Habitat disturbance","values":{"2015":20,"2020":18,"2025":15}},{"category":"Waste and water pollution","values":{"2015":20,"2020":18,"2025":15}},{"category":"Changes in water flow and hydrology","values":{"2015":15,"2020":13,"2025":10}}]}],"birdPeriods":[{"period":"2019-20","rows":[{"rank":1,"species":"Lesser Flamingo","count":65924},{"rank":2,"species":"Greater Flamingo","count":30506},{"rank":3,"species":"Lesser Sand Plover","count":5763},{"rank":4,"species":"Northern Shoveler","count":2187},{"rank":5,"species":"Common Teal","count":2078}]},{"period":"2020-21","rows":[{"rank":1,"species":"Lesser Flamingo","count":81111},{"rank":2,"species":"Little Stint","count":45276},{"rank":3,"species":"Lesser Sand Plover","count":20008},{"rank":4,"species":"Curlew Sandpiper","count":15530},{"rank":5,"species":"Common Redshank","count":7735}]},{"period":"2021–2022","rows":[{"rank":1,"species":"Lesser Flamingo","count":135527},{"rank":2,"species":"Little Stint","count":57391},{"rank":3,"species":"Greater Flamingo","count":49755},{"rank":4,"species":"Lesser Sand Plover","count":30590},{"rank":5,"species":"Curlew Sandpiper","count":28814}]}],"rawSheets":{"Wetland  Area Change":[{"sourceRow":3,"values":[null,"Panje Wetland",null,null,"NRI Complex Wetland",null,null,"TSC Wetland ",null,null,"TSC Wetland ",null,null,"Airoli Wetland",null]},{"sourceRow":4,"values":[null,"Year","ha",null,"Year","ha",null,"Year","ha",null,"Year","ha",null,"Year","ha"]},{"sourceRow":5,"values":[null,2015,156,null,2015,22,null,2015,16,null,2015,14,null,2015,35]},{"sourceRow":6,"values":[null,2020,140,null,2020,20,null,2020,14,null,2020,12,null,2020,32]},{"sourceRow":7,"values":[null,2015,124,null,2015,19,null,2015,13,null,2015,11,null,2015,30]}],"Land Use Land Cover Classes":[{"sourceRow":2,"values":[null,2015,null,null,2020,null,null,2025,null]},{"sourceRow":3,"values":[null,"Classes","Percentage %",null,"Classes","Percentage %",null,"Classes","Percentage %"]},{"sourceRow":4,"values":[null,"Water",41,null,"Water",44,null,"Water",44]},{"sourceRow":5,"values":[null,"Mangroves",23,null,"Mangroves",20,null,"Mangroves",17]},{"sourceRow":6,"values":[null,"Flooded Vegetation",14,null,"Flooded Vegetation",12,null,"Flooded Vegetation",11]},{"sourceRow":7,"values":[null,"Rangeland",5,null,"Rangeland",5,null,"Rangeland",6]},{"sourceRow":8,"values":[null,"Built Area",7,null,"Built Area",10,null,"Built Area",14]},{"sourceRow":9,"values":[null,"Bare Ground",10,null,"Bare Ground",9,null,"Bare Ground",8]}],"Environmental Threat":[{"sourceRow":4,"values":[null,"Panje Wetland",null,null,null,null,null,null,null,null,null,null]},{"sourceRow":5,"values":[null,"Environmental Threat",2015,2020,2025,null,null,null,null,null,null,null]},{"sourceRow":6,"values":[null,"Encroachment and reclamation",30,32,35,null,null,null,null,null,null,null]},{"sourceRow":7,"values":[null,"Altered tidal inflow / blocked sluice gates",25,27,28,null,null,null,null,null,null,null]},{"sourceRow":8,"values":[null,"Urban development and construction",20,20,20,null,null,null,null,null,null,null]},{"sourceRow":9,"values":[null,"Habitat disturbance",15,12,10,null,null,null,null,null,null,null]},{"sourceRow":10,"values":[null,"Waste and water pollution",10,9,7,null,null,null,null,null,null,null]},{"sourceRow":12,"values":[null,"NRI Complex Wetland",null,null,null,null,null,null,null,null,null,null]},{"sourceRow":13,"values":[null,"Environmental Threat",2015,2020,2025,null,null,null,null,null,null,null]},{"sourceRow":14,"values":[null,"Encroachment and reclamation",25,30,35,null,null,null,null,null,null,null]},{"sourceRow":15,"values":[null,"Urban development and construction",25,25,25,null,null,null,null,null,null,null]},{"sourceRow":16,"values":[null,"Habitat disturbance",20,18,15,null,null,null,null,null,null,null]},{"sourceRow":17,"values":[null,"Waste and water pollution",15,15,15,null,null,null,null,null,null,null]},{"sourceRow":18,"values":[null,"Changes in water flow and hydrology",15,12,10,null,null,null,null,null,null,null]},{"sourceRow":22,"values":[null,"TSC Wetland",null,null,null,null,null,null,null,null,null,null]},{"sourceRow":23,"values":[null,"Environmental Threat",2015,2020,2025,null,null,null,null,null,null,null]},{"sourceRow":24,"values":[null,"Encroachment and reclamation",25,30,35,null,null,null,null,null,null,null]},{"sourceRow":25,"values":[null,"Urban development and construction",25,28,30,null,null,null,null,null,null,null]},{"sourceRow":26,"values":[null,"Habitat disturbance",20,18,15,null,null,null,null,null,null,null]},{"sourceRow":27,"values":[null,"Waste and water pollution",15,14,12,null,null,null,null,null,null,null]},{"sourceRow":28,"values":[null,"Changes in water flow and hydrology",15,10,8,null,null,null,null,null,null,null]},{"sourceRow":32,"values":[null,"BPS Wetland ",null,null,null,null,null,null,null,null,null,null]},{"sourceRow":33,"values":[null,"Environmental Threat",2015,2020,2025,null,null,null,null,null,null,null]},{"sourceRow":34,"values":[null,"Encroachment and reclamation",25,28,32,null,null,null,null,null,null,null]},{"sourceRow":35,"values":[null,"Urban development and construction",20,22,25,null,null,null,null,null,null,null]},{"sourceRow":36,"values":[null,"Habitat disturbance",15,15,15,null,null,null,null,null,null,null]},{"sourceRow":37,"values":[null,"Waste and water pollution",20,20,18,null,null,null,null,null,null,null]},{"sourceRow":38,"values":[null,"Changes in water flow and hydrology",20,15,10,null,null,null,null,null,null,null]},{"sourceRow":42,"values":[null,"Airoli Wetland",null,null,null,null,null,null,null,null,null,null]},{"sourceRow":43,"values":[null,"Environmental Threat",2015,2020,2025,null,null,null,null,null,null,null]},{"sourceRow":44,"values":[null,"Encroachment and reclamation",20,25,30,null,null,null,null,null,null,null]},{"sourceRow":45,"values":[null,"Urban development and construction",25,28,30,null,null,null,null,null,null,null]},{"sourceRow":46,"values":[null,"Habitat disturbance",20,18,15,null,null,null,null,null,null,null]},{"sourceRow":47,"values":[null,"Waste and water pollution",20,18,15,null,null,null,null,null,null,null]},{"sourceRow":48,"values":[null,"Changes in water flow and hydrology",15,13,10,null,null,null,null,null,null,null]}],"Migartory Bird Data":[{"sourceRow":2,"values":[null,"2019-20",null,null]},{"sourceRow":3,"values":[null,"Rank","Bird species","Maximum count"]},{"sourceRow":4,"values":[null,1,"Lesser Flamingo",65924]},{"sourceRow":5,"values":[null,2,"Greater Flamingo",30506]},{"sourceRow":6,"values":[null,3,"Lesser Sand Plover",5763]},{"sourceRow":7,"values":[null,4,"Northern Shoveler",2187]},{"sourceRow":8,"values":[null,5,"Common Teal",2078]},{"sourceRow":11,"values":[null,"2020-21",null,null]},{"sourceRow":12,"values":[null,"Rank","Bird species","Maximum count"]},{"sourceRow":13,"values":[null,1,"Lesser Flamingo",81111]},{"sourceRow":14,"values":[null,2,"Little Stint",45276]},{"sourceRow":15,"values":[null,3,"Lesser Sand Plover",20008]},{"sourceRow":16,"values":[null,4,"Curlew Sandpiper",15530]},{"sourceRow":17,"values":[null,5,"Common Redshank",7735]},{"sourceRow":20,"values":[null,"2021–2022",null,null]},{"sourceRow":21,"values":[null,"Rank","Bird species","Maximum count"]},{"sourceRow":22,"values":[null,1,"Lesser Flamingo",135527]},{"sourceRow":23,"values":[null,2,"Little Stint",57391]},{"sourceRow":24,"values":[null,3,"Greater Flamingo",49755]},{"sourceRow":25,"values":[null,4,"Lesser Sand Plover",30590]},{"sourceRow":26,"values":[null,5,"Curlew Sandpiper",28814]}]}};
+const places = wetlandData.map((w,i)=>({
+  name:w.name, areaValue: i===4 ? 1690 : Number(w.area.match(/[\d.]+/)[0]), areaLabel:w.area,
+  type:w.overview[0].replace("Type: ",""), district:w.overview[1].replace("Location: ",""),
+  coords:w.coords, habitat:(w.overview.find(x=>x.startsWith("Habitat type: "))||"").replace("Habitat type: ",""),
+  birds:w.birds, migratory:w.migratory, keys:(w.overview.find(x=>x.startsWith("Key species: "))||w.records.find(x=>x.startsWith("Key recorded species: "))||"").replace(/^(Key species|Key recorded species): /,""),
+  threats:w.threats, priority:w.priority, refs:w.refs, data:w
+}));
+// Airoli is present in the supplied workbook. Only spreadsheet-supported values are displayed for it.
+places.push({
+ name:"Airoli Wetland", areaValue:null, areaLabel:"See area table",
+ type:"", district:"", coords:"", habitat:"", birds:"Not provided", migratory:"Not provided",
+ keys:"", threats:[], priority:"Not provided", refs:[],
+ data:{name:"Airoli Wetland",area:"See area table",coords:"",priority:"Not provided",birds:"Not provided",migratory:"Not provided",
+ overview:[],change:[],records:[],threats:[],photos:[],refs:[],about:[]}
+});
+let currentYear="2020", selectedPlace=places[0], charts={};
+const MAP_PATHS={
+ "2015": "maps/qgis2web_2026_10_14-17_14_57_708679/qgis2web_2026_10_14-17_14_57_708679",
   "2020": "maps/qgis2web_2026_10_14-17_14_57_708679/qgis2web_2026_10_14-17_14_57_708679",
   "2025": "maps/qgis2web_2026_10_14-17_14_57_708679/qgis2web_2026_10_14-17_14_57_708679"
 };
-
-
-const places = [
- {name:"Thane Wetland",coords:[19.215,72.975],area:410,type:"Creek / Mangrove Wetland",district:"Thane",habitat:"Mangrove, Mudflat, Open Water",birds:54,keys:"Greater Flamingo, Black-tailed Godwit",threats:"Reclamation, Pollution, Disturbance",priority:"High Priority"},
- {name:"Airoli Wetland",coords:[19.158,72.998],area:390,type:"Creek / Mangrove Wetland",district:"Navi Mumbai (Thane)",habitat:"Mangrove, Mudflat, Open Water",birds:61,keys:"Lesser Flamingo, Eurasian Curlew",threats:"Encroachment, Waste Dumping",priority:"High Priority"},
- {name:"Panje Wetland",coords:[19.003,72.936],area:124,type:"Creek / Mangrove Wetland",district:"Navi Mumbai (Raigad)",habitat:"Mangrove, Mudflat, Open Water",birds:68,keys:"Greater Flamingo, Black-tailed Godwit, Eurasian Curlew, etc.",threats:"Reclamation, Encroachment, Pollution, Disturbance",priority:"High Priority"},
- {name:"Navi Mumbai Mangroves",coords:[18.985,72.965],area:680,type:"Mangrove Forest",district:"Navi Mumbai",habitat:"Mangrove, Creek, Intertidal mudflat",birds:72,keys:"Little Egret, Black-tailed Godwit",threats:"Waste Dumping, Infrastructure",priority:"High Priority"},
- {name:"Uran Wetland",coords:[18.915,72.965],area:515,type:"Coastal Wetland",district:"Raigad",habitat:"Mudflat, Salt Pan, Open Water",birds:45,keys:"Greater Flamingo, Eurasian Curlew",threats:"Reclamation, Disturbance",priority:"Medium Priority"}
-];
-const map = L.map('map',{zoomControl:false}).setView([19.075,72.965],11);
-const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'Tiles © Esri — Source: Esri, Maxar, Earthstar Geographics',maxZoom:19}).addTo(map);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png',{attribution:'',subdomains:'abcd',maxZoom:19,opacity:.75}).addTo(map);
-
-const layerGroups = {
- wetland:L.layerGroup().addTo(map), mangroves:L.layerGroup().addTo(map), lulc:L.layerGroup().addTo(map),
- birds:L.layerGroup().addTo(map), threats:L.layerGroup().addTo(map), admin:L.layerGroup().addTo(map),
- survey:L.layerGroup(), priority:L.layerGroup()
-};
-const wetlandShapes = [
- [[19.24,72.92],[19.22,72.95],[19.20,72.98],[19.17,72.99],[19.15,72.97],[19.17,72.94],[19.20,72.91]],
- [[19.14,72.96],[19.12,72.99],[19.09,72.98],[19.06,72.96],[19.07,72.93],[19.11,72.93]],
- [[19.04,72.93],[19.01,72.95],[18.98,72.97],[18.95,72.96],[18.94,72.93],[18.98,72.92],[19.01,72.91]],
- [[18.94,72.96],[18.91,72.98],[18.89,72.96],[18.90,72.93],[18.93,72.93]]
-];
-wetlandShapes.forEach((coords,i)=>L.polygon(coords,{color:'#23a7f4',weight:2,fillColor:'#1388df',fillOpacity:.25}).bindPopup(`<b>Wetland zone ${i+1}</b><br>Illustrative boundary · Select a named marker for details`).addTo(layerGroups.wetland));
-const mangrovePolys = [
- [[19.22,72.947],[19.20,72.97],[19.18,72.98],[19.17,72.96],[19.19,72.94]],
- [[19.13,72.95],[19.11,72.975],[19.08,72.97],[19.07,72.95],[19.10,72.94]],
- [[19.02,72.93],[19.00,72.95],[18.97,72.96],[18.96,72.94],[18.99,72.92]]
-];
-mangrovePolys.forEach(c=>L.polygon(c,{color:'#20a35a',weight:1,fillColor:'#19b657',fillOpacity:.38}).bindPopup('Mangrove cover (illustrative overlay)').addTo(layerGroups.mangroves));
-const lulcColors=['#1789d4','#13a34a','#ffd32e','#f13e40','#f79a35'];
-for(let i=0;i<48;i++){
- const lat=18.91+Math.random()*.31, lng=72.91+Math.random()*.09;
- const radius=.0018+Math.random()*.0025;
- L.rectangle([[lat,lng],[lat+radius,lng+radius*1.5]],{color:lulcColors[i%5],weight:.5,fillColor:lulcColors[i%5],fillOpacity:.52}).addTo(layerGroups.lulc);
+const colors=["#2376c9","#1a9a51","#f6cc2c","#eb4246","#f18b4b"];
+const lulcNames=["Water","Mangroves","Agriculture","Built-up","Open Land"];
+function setYearMapLayer(year){
+ const frame=$("#yearMap"),target=MAP_PATHS[year]; if(!frame||!target)return;
+ frame.dataset.year=year; frame.src=target;
+ frame.onload=()=>{try{const doc=frame.contentDocument;if(!doc)return;
+ [...doc.querySelectorAll("label")].filter(l=>/2015|2020|2025/.test(l.textContent)).forEach(label=>{
+ const m=label.textContent.match(/\b(2015|2020|2025)\b/),input=label.querySelector('input[type="checkbox"]')||(label.htmlFor?doc.getElementById(label.htmlFor):null);
+ if(input&&input.type==="checkbox"&&input.checked!==!!m&&m[1]===String(year))input.click();
+ });}catch(e){}};
 }
-const birdPoints=[[19.211,72.966],[19.188,72.958],[19.159,72.977],[19.12,72.961],[19.087,72.949],[19.041,72.942],[19.002,72.926],[18.964,72.947],[18.934,72.96],[19.06,72.977],[19.176,72.988],[18.99,72.98]];
-birdPoints.forEach((p,i)=>L.circleMarker(p,{radius:5,color:'#fff',weight:1.5,fillColor:'#f5263b',fillOpacity:.95}).bindPopup(`<b>Migratory bird record</b><br>${['Greater Flamingo','Black-tailed Godwit','Eurasian Curlew','Little Egret'][i%4]}<br>Observation ${i+1} · Sample record`).addTo(layerGroups.birds));
-const threatPoints=[[19.15,72.96],[19.07,72.94],[19.03,72.97],[18.94,72.94],[19.19,72.99],[18.99,72.91]];
-threatPoints.forEach((p,i)=>L.marker(p,{icon:L.divIcon({className:'threat-pin',html:'<span style="color:#f22f3d;text-shadow:0 1px 2px #fff;font-size:24px">▲</span>',iconSize:[20,24],iconAnchor:[10,12]})}).bindPopup(`<b>Potential threat location</b><br>${['Encroachment','Waste dumping','Pollution','Disturbance'][i%4]}<br>Illustrative point`).addTo(layerGroups.threats));
-L.polygon([[19.26,72.90],[19.23,73.02],[18.89,73.01],[18.88,72.91]],{color:'#cbd8df',weight:2,dashArray:'6 6',fillOpacity:0}).addTo(layerGroups.admin);
-[[19.2,72.92],[19.1,72.99],[18.97,72.92],[18.91,72.99]].forEach(p=>L.circleMarker(p,{radius:7,color:'#ffd347',weight:3,fillColor:'#fff',fillOpacity:.9}).bindPopup('Field survey site · Sample location').addTo(layerGroups.survey));
-places.forEach((p,i)=>{
- const marker=L.marker(p.coords,{icon:L.divIcon({className:'place-pin',html:`<span class="pin-dot">${i===2?'●':'●'}</span>`,iconSize:[25,30],iconAnchor:[12,15]})}).addTo(map);
- marker.bindTooltip(p.name,{direction:'right',offset:[8,0],className:'place-tooltip'});
- marker.on('click',()=>selectPlace(p));
- p.marker=marker;
+function areaFor(p,year){return p.areaValue;}
+function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function linkify(s){return escapeHtml(s).replace(/(https?:\/\/[^\s]+)/g,'<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');}
+
+function areaSeriesForPlace(name){
+ const key=String(name||"").trim();
+ if(key==="Panje Wetland") return spreadsheetData.areaSeries.filter(x=>x.sourceName.trim()==="Panje Wetland");
+ if(key==="NRI Complex Wetland") return spreadsheetData.areaSeries.filter(x=>x.sourceName.trim()==="NRI Complex Wetland");
+ if(key==="Training Ship Chanakya (TSC) Wetland") return spreadsheetData.areaSeries.filter(x=>x.sourceName.trim()==="TSC Wetland");
+ if(key==="Airoli Wetland") return spreadsheetData.areaSeries.filter(x=>x.sourceName.trim()==="Airoli Wetland");
+ // The workbook contains no area-change series named BPS or TCFS; do not assign the duplicate TSC series to another site.
+ return [];
+}
+function threatGroupForPlace(name){
+ const key=String(name||"").trim();
+ const aliases={
+  "Panje Wetland":"Panje Wetland",
+  "NRI Complex Wetland":"NRI Complex Wetland",
+  "Training Ship Chanakya (TSC) Wetland":"TSC Wetland",
+  "Bhandup Pumping Station (BPS) Wetland":"BPS Wetland",
+  "Airoli Wetland":"Airoli Wetland"
+ };
+ return spreadsheetData.threatGroups.find(g=>g.sourceName.trim()===aliases[key])||null;
+}
+function tableHtml(headers,rows){
+ return `<div style="max-width:100%;overflow-x:auto;margin:9px 0 14px"><table class="detail-table"><thead><tr>${headers.map(h=>`<td style="font-weight:800;background:#f2f7f7">${escapeHtml(h)}</td>`).join("")}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(v=>`<td>${escapeHtml(v===null||v===undefined?"":v)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+function workbookAreaTable(){
+ const rows=[];
+ spreadsheetData.areaSeries.forEach(series=>series.rows.forEach(item=>rows.push([series.sourceName,item.year,item.ha])));
+ return tableHtml(["Source wetland name (as entered)","Year","ha"],rows);
+}
+function workbookLulcTable(){
+ const rows=[];
+ spreadsheetData.lulcClasses.forEach(item=>rows.push([item.name,item.values["2015"],item.values["2020"],item.values["2025"]]));
+ return tableHtml(["Classes","2015 (%)","2020 (%)","2025 (%)"],rows);
+}
+function workbookBirdTable(){
+ const rows=[];
+ spreadsheetData.birdPeriods.forEach(period=>period.rows.forEach(item=>rows.push([period.period,item.rank,item.species,item.count])));
+ return tableHtml(["Period","Rank","Bird species","Maximum count"],rows);
+}
+function workbookThreatTable(group){
+ if(!group) return `<p class="detail-text">No matching location-specific threat series is present in the supplied workbook.</p>`;
+ return tableHtml(["Environmental Threat","2015","2020","2025"],group.rows.map(item=>[item.category,item.values["2015"],item.values["2020"],item.values["2025"]]));
+}
+function renderDetail(tab="overview"){
+ $$(".detail-tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));
+ const w=selectedPlace.data; let content="";
+ if(tab==="overview") content=`<img class="detail-photo" src="images/${imageSlug(w.name)}-overview.jpg" alt="${escapeHtml(w.name)} overview image"><table class="detail-table">${w.overview.map(line=>{const i=line.indexOf(":");return `<tr><td>${escapeHtml(i<0?line:line.slice(0,i))}</td><td>${escapeHtml(i<0?"":line.slice(i+1).trim())}</td></tr>`}).join("")}</table>`;
+ if(tab==="change") content=`<div class="detail-text"><b>Change</b><ul class="detail-list">${w.change.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul><b>Wetland Area Change — supplied workbook</b><p>All source rows are shown below. Year labels and duplicate source headings have been preserved as entered.</p>${workbookAreaTable()}<b>Land Use Land Cover Classes — all years</b>${workbookLulcTable()}</div>`;
+ if(tab==="records") content=`<div class="detail-text"><b>Bird Records</b><ul class="detail-list">${w.records.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul><b>Migratory Bird Data — supplied workbook</b><p>The workbook lists seasonal counts without assigning these records to a particular wetland.</p>${workbookBirdTable()}</div>`;
+ if(tab==="threats") content=`<div class="detail-text"><b>Threats</b><ul class="detail-list">${w.threats.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul><b>Environmental Threat — supplied workbook</b>${workbookThreatTable(threatGroupForPlace(w.name))}</div>`;
+ if(tab==="references") content=`<div class="detail-text"><b>References</b><ol class="detail-list">${w.refs.map(x=>`<li>${linkify(x)}</li>`).join("")}</ol>${w.about.length?`<b>Recommended source links for the About tab</b><ul class="detail-list">${w.about.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>`:""}</div>`;
+ if(tab==="photos") content=`<div class="detail-text">${w.photos.map(([caption,path])=>`<figure style="margin:0 0 14px"><img class="detail-photo" src="${escapeHtml(path)}" alt="${escapeHtml(caption)}" onerror="this.style.display='none'"><figcaption>${escapeHtml(caption)}<div><small>Image path: ${escapeHtml(path)}</small></div></figcaption></figure>`).join("")}</div>`;
+ $("#detailContent").innerHTML=content;
+}
+
+function imageSlug(name){return name.toLowerCase().replace(/\(.*?\)/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");}
+function updateStats(){
+ const p=selectedPlace,w=p.data;
+ const areaSeries=areaSeriesForPlace(p.name);
+ const matchingAreaValues=areaSeries.flatMap(series=>series.rows.filter(row=>String(row.year)===currentYear).map(row=>row.ha));
+ $("#sideArea").textContent=matchingAreaValues.length===1?`${matchingAreaValues[0]} ha`:"See area table";
+ $("#sideChange").textContent="See area table";
+ $("#sideBirds").textContent=w.birds;
+ $("#sideThreats").textContent=(threatGroupForPlace(p.name)?.rows.length ?? w.threats.length);
+ $("#sidePriority").textContent=w.priority;
+ $("#sideYear").textContent=currentYear;
+}
+function updateCharts(){
+ const p=selectedPlace,w=p.data;
+ const areaSeries=areaSeriesForPlace(p.name);
+ if(areaSeries.length){
+  charts.area.data.labels=areaSeries[0].rows.map(row=>String(row.year));
+  charts.area.data.datasets=areaSeries.map((series,index)=>({
+   label:series.sourceName,
+   data:series.rows.map(row=>row.ha),
+   backgroundColor:index===0?"#1ba778":"#2376c9",
+   borderRadius:2
+  }));
+ }else{
+  charts.area.data.labels=[];
+  charts.area.data.datasets=[{label:"Site area (ha)",data:[],backgroundColor:"#1ba778",borderRadius:2}];
+ }
+ charts.area.update();
+
+ const lulc=spreadsheetData.lulcClasses;
+ charts.lulc.data.labels=lulc.map(item=>item.name);
+ charts.lulc.data.datasets[0].data=lulc.map(item=>item.values[currentYear]);
+ charts.lulc.update();
+ $("#lulcLegend").innerHTML=lulc.map((item,i)=>`<span><i class="sq" style="background:${colors[i%colors.length]}"></i><b>${escapeHtml(item.name)}</b><small>${escapeHtml(item.values[currentYear])}%</small></span>`).join("");
+ $("#lulcYear").textContent=currentYear;
+
+ const birdRows=spreadsheetData.birdPeriods.flatMap(period=>period.rows.map(item=>({period:period.period,...item})));
+ charts.bird.data.labels=birdRows.map(item=>`${item.period} · ${item.species}`);
+ charts.bird.data.datasets=[{label:"Maximum count",data:birdRows.map(item=>item.count),backgroundColor:"#6da1df",borderRadius:2}];
+ charts.bird.update();
+
+ const threatGroup=threatGroupForPlace(p.name);
+ if(threatGroup){
+  charts.threat.data.labels=threatGroup.rows.map(item=>item.category);
+  charts.threat.data.datasets=[{label:"Source value",data:threatGroup.rows.map(item=>item.values[currentYear]),backgroundColor:["#e84a50","#f39a52","#f3c64c","#a083d1","#7b8b93"],borderRadius:2}];
+ }else{
+  charts.threat.data.labels=[];
+  charts.threat.data.datasets=[{label:"Source value",data:[],backgroundColor:"#e84a50",borderRadius:2}];
+ }
+ charts.threat.update();$("#threatYear").textContent=currentYear;
+}
+
+function refreshAll(){setYearMapLayer(currentYear);updateStats();updateCharts();renderDetail($(".detail-tab.active")?.dataset.tab||"overview");}
+function setYear(year){if(!["2015","2020","2025"].includes(year))return;currentYear=year;$$(".year-buttons button").forEach(b=>{const active=b.dataset.year===year;b.classList.toggle("selected",active);b.setAttribute("aria-pressed",String(active));});refreshAll();}
+function selectPlace(p){selectedPlace=p;$("#wetlandSelect").value=p.name;$("#detailTitle").textContent=p.name;refreshAll();if(window.innerWidth<=760)$("#detailPanel").classList.remove("hidden");}
+const commonOptions={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:true}},animation:{duration:250}};
+charts.area=new Chart($("#areaChart"),{type:"bar",data:{labels:[],datasets:[{label:"Site area (ha)",data:[],backgroundColor:"#1ba778",borderRadius:2}]},options:{...commonOptions,scales:{y:{beginAtZero:true,grid:{color:"#e8eef0"},ticks:{font:{size:9}}},x:{grid:{display:false},ticks:{font:{size:9}}}}}});
+charts.lulc=new Chart($("#lulcChart"),{type:"doughnut",data:{labels:lulcNames,datasets:[{data:[0,0,0,0,0],backgroundColor:colors,borderWidth:1,borderColor:"#fff"}]},options:{responsive:true,maintainAspectRatio:false,cutout:"58%",plugins:{legend:{display:false},tooltip:{enabled:true}}}});
+charts.bird=new Chart($("#birdChart"),{type:"bar",data:{labels:[],datasets:[{data:[],backgroundColor:"#6da1df",borderRadius:2}]},options:{...commonOptions,indexAxis:"y",scales:{x:{beginAtZero:true,grid:{color:"#e8eef0"},ticks:{font:{size:9}}},y:{grid:{display:false},ticks:{font:{size:8}}}}}});
+charts.threat=new Chart($("#threatChart"),{type:"bar",data:{labels:[],datasets:[{data:[],backgroundColor:["#e84a50","#f39a52","#f3c64c","#a083d1","#7b8b93"],borderRadius:2}]},options:{...commonOptions,indexAxis:"y",scales:{x:{beginAtZero:true,grid:{color:"#e8eef0"},ticks:{font:{size:9}}},y:{grid:{display:false},ticks:{font:{size:8}}}}}});
+$$(".year-buttons button").forEach(b=>b.addEventListener("click",()=>setYear(b.dataset.year)));
+$("#wetlandSelect").addEventListener("change",e=>{const p=places.find(x=>x.name===e.target.value);if(p)selectPlace(p);});
+$$(".detail-tab").forEach(b=>b.addEventListener("click",()=>renderDetail(b.dataset.tab)));
+$("#closeDetail").addEventListener("click",()=>{if(window.innerWidth<=760)$("#detailPanel").classList.add("hidden");else $("#detailPanel").classList.toggle("hidden");});
+window.addEventListener("resize",()=>{if(window.innerWidth>760)$("#detailPanel").classList.remove("hidden");});
+$("#exportData").addEventListener("click",()=>{
+ const maxCols=Math.max(...Object.values(spreadsheetData.rawSheets).flatMap(rows=>rows.map(row=>row.values.length)));
+ const header=["Sheet","Source row",...Array.from({length:maxCols},(_,i)=>`Column ${i+1}`)];
+ const rows=[header];
+ Object.entries(spreadsheetData.rawSheets).forEach(([sheetName,sourceRows])=>{
+  sourceRows.forEach(sourceRow=>rows.push([sheetName,sourceRow.sourceRow,...Array.from({length:maxCols},(_,i)=>sourceRow.values[i]??"")]));
+ });
+ const csv=rows.map(r=>r.map(v=>`"${String(v??"").replaceAll('"','""')}"`).join(",")).join("\r\n"),blob=new Blob([csv],{type:"text/csv;charset=utf-8;"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="wetland-data-sheet-original-rows.csv";a.click();URL.revokeObjectURL(url);
 });
-places.forEach((p,i)=>{if(i===1||i===3||i===4)L.circle(p.coords,{radius:650,color:'#37b9a0',weight:1,fillColor:'#37b9a0',fillOpacity:.08}).addTo(layerGroups.priority).bindPopup(`${p.name}: conservation priority zone (illustrative)`);});
-const homeView={center:[19.075,72.965],zoom:11};
-$('#zoomIn').onclick=()=>map.zoomIn();$('#zoomOut').onclick=()=>map.zoomOut();$('#homeMap').onclick=()=>map.setView(homeView.center,homeView.zoom);
-let selectedPlace=places[2], currentYear='2020';
-function selectPlace(p){selectedPlace=p;$('#detailTitle').textContent=p.name;renderDetail('overview');updateLocationStats();updateCharts(currentYear);if(window.innerWidth<=1200)$('#detailPanel').classList.remove('hidden');}
-function renderDetail(tab){
- $$('.detail-tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
- const p=selectedPlace;const area=currentYear==='2015'?Math.round(p.area*1.22):currentYear==='2020'?p.area:Math.round(p.area*.90);
- let content='';
- if(tab==='overview')content=`<img class="detail-photo" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=75" alt="Wetland landscape"><table class="detail-table"><tr><td>Type</td><td>${p.type}</td></tr><tr><td>District</td><td>${p.district}</td></tr><tr><td>Area (${currentYear==='Latest'?'2025':currentYear})</td><td>${area} ha</td></tr><tr><td>Area (2015)</td><td>${Math.round(p.area*1.22)} ha</td></tr><tr><td>Change</td><td class="negative">−${Math.round(p.area*1.22-area)} ha (${Math.round((area/(p.area*1.22)-1)*1000)/10}%)</td></tr><tr><td>Habitat Type</td><td>${p.habitat}</td></tr><tr><td>Migratory Bird Species</td><td>${p.birds} (recorded)</td></tr><tr><td>Key Species</td><td>${p.keys}</td></tr><tr><td>Major Threats</td><td>${p.threats}</td></tr><tr><td>Conservation Status</td><td><span class="priority-badge">${p.priority}</span></td></tr></table>`;
- if(tab==='change')content=`<div class="detail-text"><b>Wetland area trend</b><p>Area estimates for ${p.name} are illustrative and change with the selected year.</p><ul class="detail-list"><li>2015 baseline: ${Math.round(p.area*1.22)} ha</li><li>2020 estimate: ${p.area} ha</li><li>2025 estimate: ${Math.round(p.area*.90)} ha</li><li>Net estimated change: −${Math.round(p.area*.32)} ha</li></ul><p>Use validated satellite classifications and field surveys before using these values for research or policy.</p></div>`;
- if(tab==='records')content=`<div class="detail-text"><b>Recorded bird species (sample)</b><p>${p.birds} species are shown in this demonstration dataset.</p><ul class="detail-list"><li>Greater Flamingo — 320 observations</li><li>Black-tailed Godwit — 180 observations</li><li>Eurasian Curlew — 142 observations</li><li>Common Redshank — 120 observations</li><li>Little Egret — 98 observations</li></ul><button class="detail-action" id="birdFocus">Show bird records on map</button></div>`;
- if(tab==='threats')content=`<div class="detail-text"><b>Threat assessment</b><p>Potential pressures reported for ${p.name}:</p><ul class="detail-list">${p.threats.split(', ').map(t=>`<li>${t}</li>`).join('')}</ul><p><span class="priority-badge">${p.priority}</span></p><button class="detail-action" id="threatFocus">Show threat locations</button></div>`;
- if(tab==='photos')content=`<div class="detail-text"><img class="detail-photo" src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=700&q=75" alt="Natural habitat"><p>Habitat photo placeholder. Connect verified, locally captured field images to build a real photo gallery.</p><img class="detail-photo" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=700&q=75" alt="Green wetland habitat"></div>`;
- $('#detailContent').innerHTML=content;
- if($('#birdFocus'))$('#birdFocus').onclick=()=>{layerGroups.birds.addTo(map);map.fitBounds(L.latLngBounds(birdPoints));};
- if($('#threatFocus'))$('#threatFocus').onclick=()=>{layerGroups.threats.addTo(map);map.fitBounds(L.latLngBounds(threatPoints));};
-}
-$$('.detail-tab').forEach(b=>b.addEventListener('click',()=>renderDetail(b.dataset.tab)));
-$('#closeDetail').onclick=()=>{if(window.innerWidth<=1200)$('#detailPanel').classList.add('hidden');else $('#detailPanel').classList.toggle('collapsed');};
-$$('.nav-link').forEach(b=>b.addEventListener('click',()=>{
- $$('.nav-link').forEach(x=>x.classList.toggle('active',x===b));
- const section=b.dataset.section;
- if(section==='monitor'){map.setView(homeView.center,homeView.zoom);return;}
- if(section==='change'){renderDetail('change');$('#detailPanel').scrollIntoView({behavior:'smooth',block:'nearest'});}
- if(section==='birds'){renderDetail('records');layerGroups.birds.addTo(map);map.fitBounds(L.latLngBounds(birdPoints));}
- if(section==='threats'){renderDetail('threats');layerGroups.threats.addTo(map);map.fitBounds(L.latLngBounds(threatPoints));}
- if(section==='about'){alert('Thane Creek Wetland Watch is an educational dashboard prototype for exploring wetland change, bird habitats and environmental pressures. The values and overlays shown here are illustrative, not official monitoring data.');}
-}));
-$$('.layer-row input').forEach(input=>input.addEventListener('change',()=>{
- const g=layerGroups[input.dataset.layer];if(!g)return;
- if(input.checked)g.addTo(map);else map.removeLayer(g);
-}));
-$$('.year-buttons button').forEach(btn=>btn.addEventListener('click',()=>setYear(btn.dataset.year)));
-function setYear(year){
-  if(!Object.prototype.hasOwnProperty.call(MAP_PATHS, year)) year = '2025';
-
-  currentYear = year;
-  const shown = year;
-
-  // Update the selected year button.
-  $$('.year-buttons button').forEach(button => {
-    const selected = button.dataset.year === year;
-    button.classList.toggle('selected', selected);
-    button.setAttribute('aria-pressed', String(selected));
-  });
-
-  // Load the selected year's exported QGIS map. Assign src on every
-  // selection so returning to 2020 (or any other year) reloads the map.
-  const yearMap = $('#yearMap');
-  const mapPath = MAP_PATHS[year];
-  if (yearMap && mapPath) {
-    yearMap.title = `Interactive Thane Creek wetland map for ${shown}`;
-    yearMap.style.visibility = 'hidden';
-    yearMap.src = 'about:blank';
-    window.setTimeout(() => {
-      yearMap.src = mapPath;
-      yearMap.style.visibility = 'visible';
-    }, 40);
-  }
-
-  // Keep dashboard labels and charts in sync with the selected year.
-  if($('#layerYear')) $('#layerYear').textContent = shown;
-  if($('#statYear')) $('#statYear').textContent = shown;
-  if($('#lulcYear')) $('#lulcYear').textContent = shown;
-  if($('#threatYear')) $('#threatYear').textContent = shown;
-  if($('#mapStatus')) $('#mapStatus').textContent = `Map view · ${shown}`;
-
-  updateCharts(year);
-  updateLocationStats();
-  renderDetail($('.detail-tab.active')?.dataset.tab || 'overview');
-}
-
-const baseChartOptions={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:true}},animation:{duration:350}};
-const areaChart=new Chart($('#areaChart'),{type:'line',data:{labels:['2015','2020','2025'],datasets:[{data:[3631,3215,2798],borderColor:'#1ba778',backgroundColor:'#c9ecdfaa',fill:true,tension:.28,pointRadius:4,pointBackgroundColor:'#1ba778',borderWidth:2}]},options:{...baseChartOptions,scales:{y:{min:0,grid:{color:'#e8eef0'},ticks:{font:{size:10}}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
-const lulcChart=new Chart($('#lulcChart'),{type:'doughnut',data:{labels:['Water','Mangroves','Agriculture','Built-up','Open Land'],datasets:[{data:[32,28,12,18,10],backgroundColor:['#2376c9','#1a9a51','#f6cc2c','#eb4246','#f18b4b'],borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{display:false}}}});
-const birdChart=new Chart($('#birdChart'),{type:'bar',data:{labels:['Greater Flamingo','Black-tailed Godwit','Eurasian Curlew','Common Redshank','Little Egret'],datasets:[{data:[320,180,142,120,98],backgroundColor:'#6da1df',borderRadius:2}]},options:{...baseChartOptions,indexAxis:'y',scales:{x:{grid:{color:'#e8eef0'},ticks:{font:{size:9}}},y:{grid:{display:false},ticks:{font:{size:9}}}}}});
-const threatChart=new Chart($('#threatChart'),{type:'bar',data:{labels:['Encroachment','Waste Dumping','Pollution','Infrastructure','Disturbance'],datasets:[{data:[15,12,10,8,6],backgroundColor:['#e84a50','#f39a52','#f3c64c','#a083d1','#7b8b93'],borderRadius:2}]},options:{...baseChartOptions,indexAxis:'y',scales:{x:{beginAtZero:true,grid:{color:'#e8eef0'},ticks:{font:{size:9},stepSize:5}},y:{grid:{display:false},ticks:{font:{size:9}}}}}});
-function updateCharts(year){
- const p=selectedPlace||places[2], base=p.area, area2015=Math.round(base*1.22), area2020=base, area2025=Math.round(base*.90);
- const areaNow=year==='2015'?area2015:year==='2020'?area2020:area2025;
- areaChart.data.datasets[0].data=[area2015,area2020,area2025];areaChart.data.datasets[0].label=p.name;areaChart.options.plugins.title={display:true,text:p.name};areaChart.update();
- const mix=year==='2015'?[35,30,14,13,8]:year==='2020'?[32,28,12,18,10]:[29,26,11,23,11];
- const shift=Math.max(-3,Math.min(3,Math.round((base-124)/100)));
- lulcChart.data.datasets[0].data=mix.map((v,i)=>Math.max(3,v+(i===0?-shift: i===1?shift:0)));lulcChart.update();
- threatChart.data.datasets[0].data=(year==='2015'?[9,7,6,4,4]:year==='2020'?[15,12,10,8,6]:[19,16,13,11,9]).map((v,i)=>Math.max(1,Math.round(v*(p.threats.split(', ').length/4))));
- birdChart.data.datasets[0].data=[320,180,142,120,98].map(v=>Math.round(v*p.birds/68));birdChart.update();threatChart.update();
-}
-function updateLocationStats(){
- const p=selectedPlace||places[2], area=currentYear==='2015'?Math.round(p.area*1.22):currentYear==='2020'?p.area:Math.round(p.area*.90);
- $('#sideArea').textContent=area.toLocaleString('en-US')+' ha';
- $('#sideChange').textContent=(area-Math.round(p.area*1.22)===0?'0 ha':(area<Math.round(p.area*1.22)?'−':' +')+Math.abs(area-Math.round(p.area*1.22))+' ha');
- $('#sideBirds').textContent=p.birds;
- $('#sideThreats').textContent=p.threats.split(', ').length;
- $('#sidePriority').textContent=p.priority.replace(' Priority','');
- $('#sideYear').textContent=currentYear;
-}
-$$('.layer-more').forEach(b=>b.onclick=()=>{const row=b.closest('.layer-row');const input=$('input',row);alert(`${row.innerText.replace('•••','').trim()}\n${input.checked?'Layer is visible on the map.':'Layer is currently hidden.'}\nUse the checkbox to toggle this layer.`);});
-$('#exportData').onclick=()=>{
- const rows=[['Metric','Value'],['Dashboard','Thane Creek Wetland Watch'],['Selected year',currentYear],['Wetlands mapped','8'],['Total wetland area (ha)',yearData[currentYear].area],['Area change',yearData[currentYear].change],['Migratory bird species','112'],['Threat locations','28'],['High priority sites','5'],[],['Wetland','District','Type','Area (ha)','Bird species','Threats']];
- places.forEach(p=>rows.push([p.name,p.district,p.type,currentYear==='2015'?Math.round(p.area*1.22):currentYear==='2020'?p.area:Math.round(p.area*.9),p.birds,p.threats]));
- const csv=rows.map(r=>r.map(v=>`"${String(v??'').replaceAll('"','""')}"`).join(',')).join('\r\n');
- const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`thane-creek-wetland-summary-${currentYear.toLowerCase()}.csv`;a.click();URL.revokeObjectURL(url);
-};
-const wetlandSelect=$('#wetlandSelect');
-if(wetlandSelect)wetlandSelect.addEventListener('change',()=>{const p=places.find(x=>x.name===wetlandSelect.value);if(p){selectPlace(p);map.flyTo(p.coords,13);}});
-const visitorNode=$('#visitorCount');
-if(visitorNode){let visits=201;try{visits=Math.max(201,Number(localStorage.getItem('tcww_visits')||200)+1);localStorage.setItem('tcww_visits',String(visits));}catch(e){visits=201;}visitorNode.textContent=visits.toLocaleString('en-US');}
-selectPlace(places[2]);
-
+try{const count=Math.max(201,Number(localStorage.getItem("tcww_visits")||200)+1);localStorage.setItem("tcww_visits",String(count));$("#visitorCount").textContent=count.toLocaleString("en-US");}catch(e){}
+const navToggle=$("#navToggle"),navMenu=$("#navMenu");
+navToggle.addEventListener("click",()=>{const open=navMenu.classList.toggle("is-open");navToggle.setAttribute("aria-expanded",String(open));navToggle.setAttribute("aria-label",open?"Close navigation menu":"Open navigation menu");navToggle.innerHTML=open?'<i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Close</span>':'<i class="fa-solid fa-bars" aria-hidden="true"></i><span>Menu</span>';});
+navMenu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{navMenu.classList.remove("is-open");navToggle.setAttribute("aria-expanded","false");navToggle.setAttribute("aria-label","Open navigation menu");navToggle.innerHTML='<i class="fa-solid fa-bars" aria-hidden="true"></i><span>Menu</span>';}));
+window.addEventListener("resize",()=>{if(window.innerWidth>760){navMenu.classList.remove("is-open");navToggle.setAttribute("aria-expanded","false");}});
+selectPlace(places[0]);
 </script>
 </body>
 </html>
